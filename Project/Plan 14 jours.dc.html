@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+doc-page:not(:defined){visibility:hidden}
+doc-page p{margin:0}
+doc-page ul{margin:0;padding-left:12pt}
+doc-page li{margin:0 0 2pt}
+doc-page h2,doc-page h3{margin:0}
+doc-page strong{font-weight:600;color:#12283C}
+doc-page a{color:#1D4568;text-decoration:none;border-bottom:1px solid #C6D4E1}
+doc-page a:hover{color:#C8412A;border-bottom-color:#C8412A}
+doc-page code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.88em;background:#F4EEDF;color:#1D4568;padding:0 3px;border-radius:2px}
+doc-page table{width:100%;border-collapse:collapse;font-size:9pt;line-height:1.35}
+doc-page thead th{background:#12283C;color:#F8F3E7;font-weight:600;text-align:left;padding:4pt 6pt;font-size:8pt}
+doc-page td{padding:4pt 6pt;border-bottom:1px solid #E4DAC4;vertical-align:top}
+doc-page pre{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:8.5pt;line-height:1.45;background:#F6F0E2;border-left:3px solid #1D4568;padding:8pt 10pt;margin:0;white-space:pre}
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+
+<doc-page size="a4">
+
+<section class="page" data-screen-label="Couverture" style="padding:14mm 15mm;box-sizing:border-box;display:flex;flex-direction:column;font-family:'Instrument Sans',system-ui,sans-serif;font-size:10pt;line-height:1.45;color:#1B242C">
+  <div style="background:#12283C;color:#F4EFE3;margin:-14mm -15mm 9mm;padding:16mm 15mm 12mm">
+    <div style="display:flex;align-items:center;gap:9pt;font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#F0A88E;margin-bottom:12pt"><span style="display:block;width:24pt;height:2px;background:#C8412A"></span><span>Plan de travail · 14 jours × 8 h</span></div>
+    <h1 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27pt;line-height:1.1;color:#FFFDF7;margin:0 0 10pt">Voilure composite de drone tactique — conception, justification multiphysique, essai</h1>
+    <p style="font-size:10pt;color:#B9C9D6;max-width:15cm">Tronçon représentatif de voilure d'un drone 10-15 kg, ~3 m, aile fixe, propulsion électrique. Chaîne exigences → charges → composites → vibratoire → thermique → système → essai, tracée STANAG 4671 (cadre méthodologique) et justifiée par une matrice de conformité.</p>
+  </div>
+
+  <div style="font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#7B8894;margin-bottom:5pt">Hypothèses de projet — à consigner en tête de chaque note</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#DED2B9;border:1px solid #DED2B9;margin-bottom:9mm;font-size:9pt;line-height:1.35">
+    <div style="background:#FBF7EC;padding:6pt 8pt"><div style="font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642">Masse · envergure</div><strong>~15 kg · ~3 m</strong><br />corde 0,25-0,30 m (réf. DT26E)</div>
+    <div style="background:#FBF7EC;padding:6pt 8pt"><div style="font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642">Vitesses · facteurs</div><strong>V croisière ~16 m/s</strong><br />n = +3,8 / −1,52 · extrême ×1,5</div>
+    <div style="background:#FBF7EC;padding:6pt 8pt"><div style="font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642">Matériaux</div><strong>UD carbone T300/époxy</strong><br />E₁≈130 GPa · X_t≈1500-2100 MPa · mousse</div>
+    <div style="background:#FBF7EC;padding:6pt 8pt"><div style="font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642">Pod · thermique</div><strong>~30 W dissipés</strong><br />Tg résine ~70-120 °C</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8mm;flex:1">
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;margin-bottom:6pt"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J0</span><h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:15pt;color:#12283C">La veille · 2-3 h</h2></div>
+      <div style="display:grid;gap:5pt;font-size:9.5pt;line-height:1.4">
+        <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span><strong>Logiciels principaux</strong> : finir SOLIDWORKS 2026 + Ansys Student 2026 R1 (ACP, Mechanical, Fluent ; licence → 31/03/2027). CATIA, Onshape, FreeCAD, Altair : inutiles. Nastran Student (Cadence) : bonus facultatif, à demander avant le 30/09.</span></div>
+        <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span><strong>Commandes</strong> : AliExpress (variante A) aujourd'hui + panier Amazon Prime (B) en secours ; repérer Leroy Merlin ; réserver fablab (Artilect / FabLab université).</span></div>
+        <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span><strong>Installations</strong> : XFLR5 6.62, Python (numpy/scipy/matplotlib/pandas/ansys-mapdl-core), Capella 7.1.0, Arduino IDE 2 (ESP32 3.3.x, HX711_ADC), Git + VS Code. CFD = Fluent (Gmsh/SU2 en bonus seulement). Ansys Student se lance.</span></div>
+        <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span><strong>GitHub</strong> : dépôt <code>drone-wing-justification</code> + arborescence + README squelette.</span></div>
+        <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span><strong>Lecture 2 h</strong> : FAA Pilot's Handbook (facteurs de charge, aéro) + CS-23 Subpart C (23.303/335/337/341) + survol AMC 20-29.</span></div>
+        <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span><strong>Journal de bord</strong> préparé ; auto-test passé, score noté.</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#7B8894;margin-bottom:6pt">Règles du jeu</div>
+      <div style="display:grid;gap:6pt;font-size:9.5pt;line-height:1.4">
+        <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:7pt 9pt"><strong>Plafond d'heures</strong> = contrat. À échéance : « limite atteinte — état : … — reste à faire : … », et on passe.</aside>
+        <aside style="background:#E7F0EA;border-left:3px solid #2C6B57;padding:7pt 9pt"><strong>Un livrable visible chaque soir</strong>, daté, avec ses hypothèses sources, poussé sur GitHub.</aside>
+        <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:7pt 9pt"><strong>Claude Code accélère le code</strong> ; il ne décide jamais des hypothèses, des cas de charge ni de « RF acceptable ».</aside>
+        <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:7pt 9pt"><strong>Hand-calc avant FEM.</strong> Un écart de 30 % expliqué vaut mieux qu'un écart de 3 % non compris.</aside>
+      </div>
+      <div style="margin-top:8pt;font-size:8.5pt;color:#63727E;line-height:1.4">Chaque page = un jour : objectif · rendus · timeline 09:00-18:00 (pause 13-14 h) · critère · piège · ce qu'on coupe si en retard.</div>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-screen-label="J1" style="padding:12mm 14mm;box-sizing:border-box;display:flex;flex-direction:column;font-family:'Instrument Sans',system-ui,sans-serif;font-size:10pt;line-height:1.45;color:#1B242C">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10pt;border-bottom:2px solid #12283C;padding-bottom:7pt;margin-bottom:9pt">
+    <div style="display:flex;align-items:baseline;gap:10pt"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:34pt;line-height:.9;color:#C8412A">J1</span><h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:19pt;line-height:1.1;color:#12283C">Spécification &amp; installations</h2></div>
+    <span style="font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;white-space:nowrap">Jour 1 / 14 · 8 h</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin-bottom:9pt">
+    <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:8pt 10pt"><div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:2pt">Objectif</div>Figer les données d'entrée sur lesquelles tout repose, et disposer d'un outillage qui tourne.</aside>
+    <aside style="background:#E7F0EA;border-left:3px solid #2C6B57;padding:8pt 10pt"><div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#235645;font-weight:600;margin-bottom:2pt">Rendus du jour</div><ul><li>Spécification v1 (1-2 pages)</li><li>Panier BOM commandé</li><li>15-25 premières lignes de la matrice d'exigences</li></ul></aside>
+  </div>
+  <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;margin-bottom:3pt">Timeline</div>
+  <div style="display:grid;grid-template-columns:58pt 1fr;border-top:1px solid #DED2B9;margin-bottom:9pt">
+    <div style="padding:6pt 0;border-bottom:1px solid #DED2B9;font-family:'IBM Plex Mono',monospace;font-size:8.5pt;color:#C8412A">09:00<br /><span style="color:#7B8894">2 h</span></div><div style="padding:6pt 0;border-bottom:1px solid #DED2B9"><strong>Installations.</strong> Finir SOLIDWORKS 2026 et Ansys Student 2026 R1 (zip ~23 Go déjà téléchargé), puis XFLR5, environnement Python, Capella, Arduino IDE 2, Git/VS Code.</div>
+    <div style="padding:6pt 0;border-bottom:1px solid #DED2B9;font-family:'IBM Plex Mono',monospace;font-size:8.5pt;color:#C8412A">11:00<br /><span style="color:#7B8894">2 h</span></div><div style="padding:6pt 0;border-bottom:1px solid #DED2B9"><strong>Vérifications.</strong> Ansys se lance et affiche ses limites (128 000 nœuds/éléments, 1 M cellules CFD) ; ACP (Pre), Modal, Random Vibration et Fluent visibles dans Workbench. Test SolidWorks → Parasolid/STEP → import Workbench sur une pièce simple. Dépôt GitHub avec arborescence <code>00_specification … 08_report, tools</code>.</div>
+    <div style="padding:6pt 0;border-bottom:1px solid #DED2B9;font-family:'IBM Plex Mono',monospace;font-size:8.5pt;color:#C8412A">14:00<br /><span style="color:#7B8894">2 h</span></div><div style="padding:6pt 0;border-bottom:1px solid #DED2B9"><strong>Spécification v1.</strong> Masse 15 kg, envergure 3 m, corde 0,25-0,30 m, profil choisi et justifié (NACA 4412 / Clark Y / S1223 / MH), V croisière 16 m/s, n = +3,8/−1,52, T300/époxy (E₁, E₂, G₁₂, ν₁₂, X_t, Y_t), pod 30 W, Tg résine. Hors-périmètre écrit noir sur blanc.</div>
+    <div style="padding:6pt 0;border-bottom:1px solid #DED2B9;font-family:'IBM Plex Mono',monospace;font-size:8.5pt;color:#C8412A">16:00<br /><span style="color:#7B8894">2 h</span></div><div style="padding:6pt 0;border-bottom:1px solid #DED2B9"><strong>Commande &amp; matrice.</strong> Commande AliExpress (variante A) passée, panier B prêt. Matrice d'exigences amorcée : ID · énoncé · source · MoC · chapitre · résultat · statut.</div>
+  </div>
+  <div style="flex:1"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7pt;font-size:9pt;line-height:1.4">
+    <div style="background:#E7F0EA;padding:7pt 9pt"><div style="font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;margin-bottom:1pt">Critère</div>Chaque valeur a une source ou est marquée « hypothèse ».</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><div style="font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;margin-bottom:1pt">Piège</div>Chiffres « au feeling » non tracés.</div>
+    <div style="background:#F6F0E2;padding:7pt 9pt"><div style="font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;margin-bottom:1pt">On coupe si en retard</div>CAO détaillée.</div>
+  </div>
+</section>
+
+<div id="end"></div>
+</doc-page>
+</x-dc>
+</body>
+</html>

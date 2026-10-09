@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+doc-page:not(:defined){visibility:hidden}
+doc-page p{margin:0 0 8pt}
+doc-page ul,doc-page ol{margin:0 0 9pt;padding-left:15pt}
+doc-page li{margin:0 0 4pt}
+doc-page h2,doc-page h3,doc-page h4,doc-page h5{margin:0}
+doc-page strong{font-weight:600;color:#12283C}
+doc-page a{color:#1D4568;text-decoration:none;border-bottom:1px solid #C6D4E1}
+doc-page a:hover{color:#C8412A;border-bottom-color:#C8412A}
+doc-page code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.86em;background:#F4EEDF;color:#1D4568;padding:1px 3px;border-radius:2px}
+doc-page aside{break-inside:avoid;orphans:3;widows:3}
+doc-page table{width:100%;border-collapse:collapse;margin:2pt 0 11pt;font-size:10pt;line-height:1.42}
+doc-page thead th{background:#12283C;color:#F8F3E7;font-weight:600;text-align:left;padding:5pt 7pt;font-size:9pt;letter-spacing:.02em;vertical-align:bottom}
+doc-page td{padding:5pt 7pt;border-bottom:1px solid #E4DAC4;vertical-align:top}
+doc-page tbody tr:nth-child(even) td{background:#FBF7EC}
+doc-page pre{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:9.5pt;line-height:1.55;background:#F6F0E2;border-left:3px solid #1D4568;padding:10pt 12pt;margin:2pt 0 11pt;white-space:pre;overflow:visible;color:#22303C}
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+
+<doc-page size="{{ paper }}" margin="0.68in" style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:11.5pt;line-height:1.6;color:#1B242C">
+
+<div slot="footer" style="display:flex;justify-content:space-between;align-items:baseline;gap:12pt;border-top:1px solid #DED2B9;padding-top:5pt;font-size:8pt;letter-spacing:.06em;text-transform:uppercase;color:#7B8894">
+  <span>Justification structurale — voilure composite de drone tactique 10-15 kg</span>
+  <span style="color:#C8412A">7 sept. 2026 · MAJ logiciels 15 sept. 2026</span>
+</div>
+
+<header style="background:#12283C;color:#F4EFE3;margin:-0.68in -0.68in 20pt;padding:34pt 0.68in 30pt;position:relative">
+  <div style="display:flex;align-items:center;gap:9pt;font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#F0A88E;margin-bottom:16pt">
+    <span style="display:block;width:26pt;height:2px;background:#C8412A"></span>
+    <span>Polycopié de projet · 14 jours · 112 heures</span>
+  </div>
+  <h1 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:33pt;line-height:1.08;letter-spacing:-.01em;color:#FFFDF7;margin:0 0 14pt;max-width:19cm">Conception, justification multiphysique et essai d'une voilure composite de drone tactique</h1>
+  <p style="font-size:11pt;line-height:1.55;color:#B9C9D6;max-width:15cm;margin:0 0 22pt">Projet personnel intensif · 14 jours × 8 h (112 h, 7 j/7). Objectif : premier poste d'ingénieur calcul de structures (puis ingénieur système), écosystème aéro/spatial/défense de Toulouse.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2A4360;border:1px solid #2A4360">
+    <div style="background:#12283C;padding:9pt 11pt">
+      <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8FA6B8;margin-bottom:3pt">Objet</div>
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#FFFDF7">Voilure composite</div>
+    </div>
+    <div style="background:#12283C;padding:9pt 11pt">
+      <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8FA6B8;margin-bottom:3pt">Classe</div>
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#FFFDF7">10-15 kg · ~3 m</div>
+    </div>
+    <div style="background:#12283C;padding:9pt 11pt">
+      <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8FA6B8;margin-bottom:3pt">Référentiel</div>
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#FFFDF7">STANAG 4671</div>
+    </div>
+    <div style="background:#12283C;padding:9pt 11pt">
+      <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8FA6B8;margin-bottom:3pt">Livrable</div>
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#FFFDF7">Dossier 20-30 p.</div>
+    </div>
+  </div>
+  <p style="font-size:8.5pt;color:#8FA6B8;margin:16pt 0 0">Date de rédaction / vérification web : 7 septembre 2026 · Mise à jour logiciels (SOLIDWORKS 2026 + Ansys Student 2026 R1) : 15 septembre 2026 · Auteur : ton encadrant (enseignant-chercheur structures aéro + ingénieur calcul senior BE)</p>
+</header>
+
+<section>
+  <div style="display:flex;align-items:baseline;gap:10pt;margin-bottom:11pt">
+    <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:21pt;color:#12283C">TL;DR</h2>
+    <span style="font-size:9pt;letter-spacing:.1em;text-transform:uppercase;color:#C8412A">l'essentiel en 3 points</span>
+    <span style="flex:1;height:1px;background:#DED2B9"></span>
+  </div>
+  <div style="display:grid;gap:9pt">
+    <aside style="display:grid;grid-template-columns:34pt 1fr;background:#F6F0E2;border-left:3px solid #C8412A">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24pt;color:#C8412A;text-align:center;padding-top:8pt">1</div>
+      <p style="margin:0;padding:11pt 13pt 11pt 0;font-size:10.5pt;line-height:1.55"><strong>Oui, ce projet est faisable en 112 h et il ferme exactement le trou de ton CV</strong> (zéro aéro aujourd'hui) : en 14 jours tu produis une chaîne complète <em>exigences → aéro/charges → composites → vibratoire → thermique → système → essai réel</em>, sur un seul objet (voilure de drone tactique ~10-15 kg, ~3 m), tracée au <strong>STANAG 4671</strong> et justifiée par une <strong>matrice de conformité</strong>. C'est précisément ce que demandent les offres « stress engineer » d'Airbus (produire des reserve factors/marges selon des méthodes validées, hand-calc + FEM).</p>
+    </aside>
+    <aside style="display:grid;grid-template-columns:34pt 1fr;background:#F6F0E2;border-left:3px solid #C8412A">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24pt;color:#C8412A;text-align:center;padding-top:8pt">2</div>
+      <p style="margin:0;padding:11pt 13pt 11pt 0;font-size:10.5pt;line-height:1.55"><strong>La boîte à outils tient en deux logiciels principaux (mise à jour du 15 sept. 2026)</strong> : <strong>SOLIDWORKS 2026</strong> pour la CAO et <strong>Ansys Student 2026 R1</strong> (Mechanical + ACP composites + Fluent, licence valable jusqu'au 31/03/2027). Tout le reste est gratuit : XFLR5, Python/PyMAPDL, Capella (l'outil MBSE de Thales), Arduino IDE 2 ou PlatformIO pour l'ESP32, Git, plus les normes libres (CS-23, MIL-STD-810H, MIL-HDBK-17). SU2, OpenFOAM, CalculiX, Nastran et Altair passent en option. <strong>Si tu veux quand même une licence tierce (MSC, Altair), inscris-toi AVANT le 30 septembre</strong> (tu es encore étudiant ESTIA ce mois-ci) et <strong>commande le matériel le Jour 0</strong> (le colis AliExpress met plus longtemps que le projet ne dure). Budget matériel réaliste : <strong>40-100 €</strong>.</p>
+    </aside>
+    <aside style="display:grid;grid-template-columns:34pt 1fr;background:#F6F0E2;border-left:3px solid #C8412A">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24pt;color:#C8412A;text-align:center;padding-top:8pt">3</div>
+      <p style="margin:0;padding:11pt 13pt 11pt 0;font-size:10.5pt;line-height:1.55"><strong>La règle de survie du projet, calibrée sur ton profil</strong> : jalon quotidien + livrable visible + plafond d'heures par tâche, et quand le plafond tombe, <strong>tu écris ce que tu as et tu passes à la suite</strong>. Le calcul à la main vérifié par le FEM est ton fil conducteur ; Claude Code accélère le code mais <strong>ne décide jamais</strong> des hypothèses, des charges, ni de la validation.</p>
+    </aside>
+  </div>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">0</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 0</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Page de garde, sommaire, mode d'emploi</h2>
+    </div>
+  </div>
+
+  <aside style="background:#12283C;color:#F4EFE3;padding:14pt 16pt;margin:0 0 14pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#F0A88E;margin-bottom:6pt">Titre du dossier livrable</div>
+    <p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:15pt;line-height:1.35;color:#FFFDF7"><em>Justification structurale d'une voilure composite de drone tactique classe 10-15 kg — conformité STANAG 4671 (méthodologie), corrélation essai/calcul.</em></p>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">Sommaire du polycopié</h3>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:2pt 20pt;margin-bottom:14pt;font-size:10.5pt;line-height:1.45">
+    <div style="display:grid;grid-template-columns:20pt 1fr;gap:3pt 0">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">0</span><span>Mode d'emploi</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">1</span><span>Brief du projet</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">2</span><span>Objectifs pédagogiques + auto-test</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">3</span><span>Ressources (outils, référentiels, cours, BOM, commandes)</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">4</span><span>Méthode d'ingénierie</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">5</span><span>Planning 14 jours détaillé</span>
+    </div>
+    <div style="display:grid;grid-template-columns:20pt 1fr;gap:3pt 0">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">6</span><span>Les 14 sous-étapes + 11 fiches de cours</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">7</span><span>Fabrication &amp; essais</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">8</span><span>Livrables &amp; grille d'auto-évaluation</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">9</span><span>Valorisation (LinkedIn, CV, pitch, 20 questions)</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">10</span><span>Annexes (glossaire, templates, sources datées)</span>
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">+</span><span><strong>Jour 0</strong> : la checklist à faire AVANT de commencer.</span>
+    </div>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">Comment utiliser ce document</h3>
+  <ul>
+    <li>Tu le suis <strong>dans l'ordre</strong>. Chaque matin tu lis le bloc du jour dans le planning (Section 5), puis tu ouvres la ou les sous-étapes correspondantes (Section 6).</li>
+    <li>Chaque sous-étape a la même structure : <em>objectif · problématique · fiche de cours · méthode pas-à-pas · sans IA / avec Claude Code · livrable · critère de validation chiffré · pièges · temps · lien matrice de conformité.</em></li>
+    <li><strong>Discipline de temps</strong> : le plafond d'heures est un contrat avec toi-même. Dépassement = tu figes, tu notes « limite atteinte, état actuel : … », tu avances. Un dossier à 80 % complet vaut infiniment mieux qu'un chapitre parfait et trois chapitres vides.</li>
+    <li><strong>Traçabilité</strong> : tout finit dans le dépôt GitHub, chaque résultat porte une date et une hypothèse source.</li>
+  </ul>
+
+  <div style="font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:#7B8894;margin:14pt 0 7pt">Les quatre encadrés du polycopié</div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8pt;margin-bottom:6pt">
+    <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:9pt 11pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Fiche de cours</div>
+      <div style="font-size:10pt;line-height:1.45">La théorie minimale dont tu as besoin, juste avant de t'en servir.</div>
+    </aside>
+    <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:9pt 11pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#A8331E;font-weight:600;margin-bottom:3pt">Piège</div>
+      <div style="font-size:10pt;line-height:1.45">L'erreur classique qui coûte une demi-journée ou un résultat faux.</div>
+    </aside>
+    <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 11pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+      <div style="font-size:10pt;line-height:1.45">Ce qu'on délègue, et le chemin manuel équivalent que tu dois savoir refaire.</div>
+    </aside>
+    <aside style="background:#E7F0EA;border-left:3px solid #2C6B57;padding:9pt 11pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#235645;font-weight:600;margin-bottom:3pt">Critère de validation</div>
+      <div style="font-size:10pt;line-height:1.45">Le seuil chiffré qui dit « c'est bon, je passe à la suite ».</div>
+    </aside>
+  </div>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">1</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 1</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Brief du projet</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">1.1 Contexte industriel (Toulouse, défense/dual, 2026)</h3>
+  <p>Toulouse est la capitale européenne de l'aéronautique et un pôle drone en croissance : <strong>Delair</strong> (drones tactiques à voilure fixe), <strong>Airbus Defence and Space</strong>, <strong>Thales / Thales Alenia Space</strong>, <strong>Safran</strong>, <strong>Liebherr Aerospace</strong>, <strong>Latécoère</strong>, et l'écosystème drone (Delair, Donecle). Le salon <em>Des Étoiles et Des Ailes</em> (Carcassonne, sept. 2026) affichait pour l'Occitanie <strong>100 000 emplois dans le secteur et un thème « Défense nationale »</strong> — l'orientation défense/dual est donc porteuse pour un premier poste.</p>
+  <p>Ton objet de référence existe : le <strong>Delair DT26E Surveillance</strong>. D'après sa fiche technique constructeur (delair.aero), il pèse <strong>15 kg (charge utile incluse)</strong>, envergure <strong>3,3 m</strong>, longueur <strong>1,6 m</strong>, matériaux <strong>composite (fibre de verre, carbone, kevlar) + mousse EPP</strong>, <strong>vitesse de croisière 57 km/h</strong>, <strong>endurance jusqu'à 170 min</strong>, lancement <strong>catapulte / atterrissage sur le ventre</strong>. (À noter : Army Recognition mentionne un poids total plutôt de ~16 kg et une portée liaison jusqu'à 50 km ; garde ça comme fourchette.) C'est ta cible d'ordre de grandeur, à consigner comme <strong>hypothèses de projet</strong>.</p>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">1.2 Objet, périmètre, hors-périmètre</h3>
+  <p><strong>Objet</strong> : concevoir, justifier par calcul multiphysique et <strong>tester physiquement</strong> un <strong>tronçon représentatif de voilure composite</strong> d'un drone tactique 10-15 kg, ~3 m d'envergure, aile fixe, propulsion électrique, avec un <strong>fil rouge réglementaire</strong> (STANAG 4671, comparé au civil UE 2019/947).</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9pt;margin:0 0 12pt">
+    <aside style="background:#E7F0EA;border-top:3px solid #2C6B57;padding:10pt 12pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#235645;font-weight:600;margin-bottom:5pt">Dans le périmètre</div>
+      <p style="margin:0;font-size:10pt;line-height:1.5">Spécification &amp; exigences, diagramme V-n, charges, aéro (XFLR5 + CFD 2D), dimensionnement composite (CLT à la main + FEM coques), vibratoire/aéroélasticité, thermique du pod moteur, un modèle système léger sous Capella, fabrication + 2 essais, dossier de justification + valorisation.</p>
+    </aside>
+    <aside style="background:#FBEAE4;border-top:3px solid #C8412A;padding:10pt 12pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#A8331E;font-weight:600;margin-bottom:5pt">Hors périmètre — à écrire noir sur blanc</div>
+      <p style="margin:0;font-size:10pt;line-height:1.5">Conception système complète du drone, avionique, liaison de données, charge utile détaillée, train/catapulte, essais en vol, tolérance aux dommages complète (BVID), fatigue full-scale, certification réelle.</p>
+    </aside>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">1.3 Résultat attendu</h3>
+  <p>Un <strong>dossier de justification de 20-30 pages</strong> + <strong>matrice de conformité</strong> + <strong>note d'essais</strong> + <strong>dépôt GitHub</strong> propre + <strong>matériel physique testé</strong>. Le tout démontrable en 3 minutes à un recruteur et défendable 30 minutes face à un ingénieur calcul senior.</p>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">1.4 Pourquoi ce projet « ouvre les portes » — cartographie compétence → poste</h3>
+  <table>
+    <thead><tr><th style="width:34%">Chapitre du projet</th><th style="width:30%">Compétence prouvée</th><th>Poste / employeur visé</th></tr></thead>
+    <tbody>
+      <tr><td>Exigences + matrice de conformité + STANAG/CS-23</td><td>Navigabilité, MoC, traçabilité</td><td>Ingénieur navigabilité / certification (Airbus, ADS)</td></tr>
+      <tr><td>Diagramme V-n + charges</td><td>Loads &amp; envelope</td><td>Loads engineer (Airbus)</td></tr>
+      <tr><td>CLT Python + FEM coques stratifiées + RF</td><td>Calcul structures composites</td><td><strong>Ingénieur calcul structures / stress (Airbus, Safran, Latécoère)</strong></td></tr>
+      <tr><td>CFD 2D profil</td><td>Aérodynamique numérique</td><td>Aéro/CFD (ADS, ONERA-like)</td></tr>
+      <tr><td>Modale + random 3σ + flottement 1er ordre</td><td>Dynamique / environnement mécanique</td><td>Ingénieur dynamique/vibratoire (Thales Alenia Space, Safran)</td></tr>
+      <tr><td>Thermique pod (CHT ou réseau 1D)</td><td>Thermique embarquée</td><td>Ingénieur thermique (TAS, ADS)</td></tr>
+      <tr><td>Capella / Arcadia</td><td>MBSE, langage Thales</td><td><strong>Ingénieur système (Thales)</strong></td></tr>
+      <tr><td>Essai instrumenté + corrélation</td><td>Essais / recalage modèle</td><td>Ingénieur essais</td></tr>
+      <tr><td>Python (CLT, FFT, PyMAPDL, automatisation)</td><td>Automatisation calcul</td><td>Transverse, très différenciant</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">2</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 2</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Objectifs pédagogiques &amp; prérequis</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 9pt;padding-left:8pt;border-left:3px solid #C8412A">2.1 Objectifs</h3>
+  <div style="display:grid;gap:8pt;margin-bottom:14pt">
+    <aside style="display:grid;grid-template-columns:78pt 1fr;gap:0;border-top:1px solid #DED2B9;border-bottom:1px solid #DED2B9;background:#FBF7EC">
+      <div style="background:#1D4568;color:#F4EFE3;padding:10pt 9pt;font-family:'Instrument Serif',Georgia,serif;font-size:13pt;line-height:1.2">Savoir</div>
+      <p style="margin:0;padding:10pt 12pt;font-size:10pt;line-height:1.5">Enveloppe de vol et diagramme V-n ; notion de charge limite vs charge extrême et <strong>coefficient de sécurité 1,5</strong> ; allowables A-basis/B-basis ; théorie classique des stratifiés (matrice ABD, contraintes par pli, critères Tsai-Wu / déformation max) ; règles de drapage ; flambement de peau ; analyse modale et réponse aléatoire (PSD, RMS, 3σ, Miles) ; notion de flottement ; Tg des composites ; cadre de certification (Part 21, EASA/DGAC/DSAÉ, STANAG 4671 vs 2019/947 vs CS-23) ; méthode Arcadia.</p>
+    </aside>
+    <aside style="display:grid;grid-template-columns:78pt 1fr;gap:0;border-top:1px solid #DED2B9;border-bottom:1px solid #DED2B9;background:#FBF7EC">
+      <div style="background:#2E6893;color:#F4EFE3;padding:10pt 9pt;font-family:'Instrument Serif',Georgia,serif;font-size:13pt;line-height:1.2">Savoir-faire</div>
+      <p style="margin:0;padding:10pt 12pt;font-size:10pt;line-height:1.5">Produire polaires et distribution de portance sous XFLR5 ; faire tourner une CFD 2D convergée ; écrire un script CLT et le confronter à un FEM coques ; calculer des reserve factors ; mener une analyse modale et une random vibration ; construire une matrice de conformité ; instrumenter et exploiter un essai (raideur + modal), recaler le modèle.</p>
+    </aside>
+    <aside style="display:grid;grid-template-columns:78pt 1fr;gap:0;border-top:1px solid #DED2B9;border-bottom:1px solid #DED2B9;background:#FBF7EC">
+      <div style="background:#C8412A;color:#FFF6F1;padding:10pt 9pt;font-family:'Instrument Serif',Georgia,serif;font-size:13pt;line-height:1.2">Savoir-être</div>
+      <p style="margin:0;padding:10pt 12pt;font-size:10pt;line-height:1.5">Tenir un planning en timeboxing ; documenter hypothèses et unités ; <strong>être honnête sur les écarts</strong> (un écart de 30 % expliqué vaut mieux qu'un écart de 3 % non compris) ; utiliser l'IA comme accélérateur, pas comme oracle.</p>
+    </aside>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 4pt;padding-left:8pt;border-left:3px solid #C8412A">2.2 Auto-test de prérequis</h3>
+  <p style="font-size:10pt;color:#63727E;margin:0 0 10pt">10 questions — corrige-toi avec les fiches de cours.</p>
+  <div style="display:grid;gap:7pt;margin-bottom:12pt">
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">01</span>
+      <div><div>Différence entre <strong>charge limite</strong> et <strong>charge extrême</strong> ?</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Réponse cible : limite = max en service ; extrême = limite × 1,5, tenue ≥ 3 s sans rupture.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">02</span>
+      <div><div>Valeur du coefficient de sécurité structural en aéro civil ?</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">1,5.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">03</span>
+      <div><div>Définis le <strong>reserve factor</strong> RF et la <strong>marge de sécurité</strong> MS.</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">RF = allowable/appliqué ; MS = RF − 1.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">04</span>
+      <div><div>Que contient la matrice <strong>ABD</strong> ?</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Couplages membrane [A], membrane-flexion [B], flexion [D].</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">05</span>
+      <div><div>Écris le critère de <strong>Tsai-Wu</strong> en une phrase.</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Critère quadratique d'interaction des contraintes dans le repère du pli.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">06</span>
+      <div><div>Pourquoi surveiller la <strong>séparation flexion/torsion</strong> ?</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Convergence des deux → risque de <strong>flottement</strong>.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">07</span>
+      <div><div>Que sont <strong>RMS</strong> et la <strong>règle 3σ</strong> en random ?</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Écart-type de contrainte ; on dimensionne à 3× l'écart-type.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">08</span>
+      <div><div>Qu'est-ce que la <strong>Tg</strong> d'une résine et pourquoi c'est critique ?</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Température de transition vitreuse ; au-delà, chute de propriétés.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">09</span>
+      <div><div>Cite les <strong>3 catégories</strong> du règlement UE 2019/947.</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Open, Specific, Certified.</div></sc-if></div>
+    </aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10pt;line-height:1.5">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">10</span>
+      <div><div>Que fait l'<strong>analyse opérationnelle</strong> dans Arcadia ?</div><sc-if value="{{ showAnswers }}" hint-placeholder-val="{{ true }}"><div style="color:#235645;border-left:2px solid #9EC4B2;padding-left:7pt;margin-top:2pt">Décrit le besoin/usage avant toute solution technique.</div></sc-if></div>
+    </aside>
+  </div>
+  <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:9pt 12pt;margin-bottom:14pt">
+    <p style="margin:0;font-size:10pt;line-height:1.5">Si tu rates plus de 4 questions, ce n'est pas grave : c'est exactement ce que le projet t'apprend. Note ton score de départ ; tu le repasseras au Jour 14.</p>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">2.3 Ce que tu maîtrises déjà (et qu'on va réutiliser)</h3>
+  <p>FEA ANSYS Mechanical (statique/dynamique/cyclique) → transférable direct au FEM coques. MATLAB/Simulink, <strong>Python solide</strong> (SciPy/NumPy/PyTorch) → CLT, FFT, PyMAPDL. SolidWorks (2026 installé) → CAO voilure, export Parasolid/STEP vers Ansys. Optimisation (PSO, BFGS) → bonus drapage. <strong>Le seul vrai delta, c'est le domaine aéro (composites, CS-25/CS-23, Nastran, vibratoire aéro, thermique embarquée).</strong> Ce projet est construit pour combler ce delta et rien d'autre.</p>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">3</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 3</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Ressources</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 4pt;padding-left:8pt;border-left:3px solid #C8412A">3.1 Outils</h3>
+  <p style="font-size:10pt;color:#63727E;margin:0 0 10pt">Disponibilité vérifiée le 7 sept. 2026, <strong>mise à jour le 15 sept. 2026</strong> (SOLIDWORKS 2026 + Ansys Student 2026 R1 installés). Le chiffre en marge est le jour d'installation ; « opt. » = facultatif, « — » = plus nécessaire.</p>
+  <aside style="background:#E7F0EA;border-left:3px solid #2C6B57;padding:9pt 12pt;margin-bottom:10pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#235645;font-weight:600;margin-bottom:3pt">Pile minimale retenue</div>
+    <p style="margin:0;font-size:10pt;line-height:1.5"><strong>Déjà là</strong> : SOLIDWORKS 2026 SP04.1 (CAO) · Ansys Student 2026 R1 (Mechanical, ACP, Fluent, Meshing, CFD-Post). <strong>À installer</strong> : XFLR5 6.62 · Python 3 + numpy/scipy/matplotlib/pandas + <code>ansys-mapdl-core</code> · Capella 7.1.0 · Arduino IDE 2 (cartes ESP32 3.3.x) ou VS Code + PlatformIO/pioarduino · bibliothèques HX711_ADC + MPU6050/ADXL345 · Git (ou GitHub Desktop) · VS Code · Overleaf (en ligne). <strong>Inutile pour ce projet</strong> : CATIA, Onshape, FreeCAD, Fusion, Altair/Simcenter Student, LS-DYNA Student (pas de crash/impact dans le périmètre), OpenFOAM/WSL.</p>
+  </aside>
+
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">J1</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Ansys Student 2026 R1</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · installé · licence jusqu'au 31/03/2027</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">ansys.synopsys.com/academic/students</span></div>
+      <div style="font-size:10pt;line-height:1.5">Outil central : <strong>ACP Pre &amp; Post</strong> (plis composites), Mechanical (statique, flambement linéaire, modal, random vibration, thermique stationnaire), <strong>Fluent</strong> (CFD 2D profil + CHT pod), Meshing, CFD-Post/EnSight, SpaceClaim/Discovery, optiSLang. <span style="color:#5A6B78"><strong>Limites :</strong> structural <strong>128 000</strong> nœuds/éléments ; CFD <strong>1 million</strong> de cellules/nœuds ; 4 cœurs CPU ; <strong>pas d'export de géométrie</strong> (la CAO se fait dans SolidWorks et s'importe dans Ansys, jamais l'inverse). Windows 10/11 64 bits, installation sur PC physique (pas de VM), usage éducatif. Licence utilisable même après la fin du statut étudiant. Pas de système « flottement » : il reste en Python à partir des modes Ansys. <em>À vérifier au J6 : comptage des plis ACP dans la limite de 128 000 (repli : plis dans Mechanical ou CalculiX).</em></span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">opt.</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">MSC Nastran + Patran Student (Cadence)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#F6F0E2;color:#7A6642;padding:1pt 5pt">Gratuit · étudiant inscrit · bonus</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">cadence.com › msc-software › academics</span></div>
+      <div style="font-size:10pt;line-height:1.5">Contre-vérification modale (SOL 103), « écart Ansys/Nastran ». <strong>Plus nécessaire</strong> avec Ansys Student ; bonus seulement. <span style="color:#5A6B78">MSC appartient à <strong>Cadence</strong> depuis le 23/02/2026 (rachat de la branche D&amp;E de Hexagon). Édition étudiante toujours gratuite « avec taille de modèle limitée », sans chiffre publié (5 000 nœuds historiquement, trop peu pour l'aile complète). Réservée aux étudiants inscrits, donc à demander avant fin septembre si tu la veux.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#7B8894;font-weight:600;text-align:right">opt.</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Altair Student Edition (Siemens)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#F6F0E2;color:#7A6642;padding:1pt 5pt">Gratuit · e-mail école · non nécessaire</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">siemens.com › altair-student-edition</span></div>
+      <div style="font-size:10pt;line-height:1.5">Alternative FEM/optim (OptiStruct), drapage. <strong>Doublon avec Ansys Student → on ne l'installe pas.</strong> <span style="color:#5A6B78">Toujours offerte par Siemens via Altair One, produits renommés Simcenter (HyperMesh, OptiStruct…). Exige un e-mail institutionnel, qui ne sera plus valide après septembre 2026.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#7B8894;font-weight:600;text-align:right">J1</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">SOLIDWORKS 2026 SP04.1</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Installé · licence étudiante</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">solidworks.com</span></div>
+      <div style="font-size:10pt;line-height:1.5">CAO de la voilure : profil importé par <em>Insertion › Courbe › Courbe passant par des points XYZ</em> (fichier <code>.sldcrv</code>/<code>.txt</code> généré en Python depuis les coordonnées du profil, en mm), lissage longitudinal, surfaces de peau + longeron, puis <strong>export Parasolid (<code>.x_t</code>) ou STEP</strong> → import dans SpaceClaim/Mechanical (et ACP). Pour le FEM coques, exporter des <strong>surfaces</strong> (ou extraire les surfaces moyennes dans SpaceClaim). <span style="color:#5A6B78">Remplace CATIA, Onshape, FreeCAD et Fusion, qui ne sont plus nécessaires. SOLIDWORKS Simulation / Flow Simulation, si ta licence les inclut, ne servent pas ici : Ansys fait le calcul.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">J1</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">XFLR5</strong> <span style="color:#5A6B78;font-size:10pt">(v6.62, mars 2026)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · Win/Mac/Linux</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">sourceforge.net/projects/xflr5</span></div>
+      <div style="font-size:10pt;line-height:1.5">Polaires profil, VLM/LLT, distribution de portance, Cp. <span style="color:#5A6B78"><strong>Limites :</strong> non visqueux couplé ; pas de décrochage 3D fin.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">—</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">OpenFOAM</strong> <span style="color:#5A6B78;font-size:10pt">(openfoam.com v2606, juin 2026)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#F6F0E2;color:#7A6642;padding:1pt 5pt">Gratuit · non nécessaire</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">openfoam.com / .org</span></div>
+      <div style="font-size:10pt;line-height:1.5">Remplacé par <strong>Fluent</strong> (Ansys Student) pour la CFD 2D. <span style="color:#5A6B78">Sous Windows il faut WSL, Docker ou des exécutables cross-compilés : trop de mise en place pour 14 jours.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">opt.</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">SU2</strong> <span style="color:#5A6B78;font-size:10pt">(v8.5.0 « Harrier », avril 2026)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#F6F0E2;color:#7A6642;padding:1pt 5pt">Gratuit · LGPL · bonus</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">github.com/su2code/SU2/releases</span></div>
+      <div style="font-size:10pt;line-height:1.5">CFD 2D profil (RANS, SA/SST) en <strong>contre-vérification open source</strong> de Fluent, seulement si tu as du temps (réserve J4). <span style="color:#5A6B78">Le fonctionnement natif des binaires Windows n'a pas été confirmé : teste-le avant d'en dépendre.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">opt.</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">CalculiX</strong> <span style="color:#5A6B78;font-size:10pt">(v2.23, build Windows natif)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#F6F0E2;color:#7A6642;padding:1pt 5pt">Gratuit · repli</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">github.com/calculix/CalculiX-Windows</span></div>
+      <div style="font-size:10pt;line-height:1.5">Repli FEM coques/composites (format type Abaqus), à installer <strong>seulement si</strong> ACP ou la limite de 128 000 bloquent au J6. <span style="color:#5A6B78">Fichier <code>CalculiX-2.23.0-win-x64.zip</code> dans le dossier <code>releases/</code> du dépôt, sans WSL. Pré-post CGX rustique.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#7B8894;font-weight:600;text-align:right">opt.</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Salome-Meca / Code_Aster</strong> <span style="color:#5A6B78;font-size:10pt">(2025, EDF)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · open-source</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">code-aster.org</span></div>
+      <div style="font-size:10pt;line-height:1.5">Repli FEM avancé. <span style="color:#5A6B78"><strong>Limites :</strong> Windows via binaire/Docker.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">opt.</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Gmsh / ParaView</strong> <span style="color:#5A6B78;font-size:10pt">(Gmsh 4.15.2 · ParaView 6.0.x stable)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#F6F0E2;color:#7A6642;padding:1pt 5pt">Gratuit · avec SU2 seulement</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">gmsh.info · paraview.org</span></div>
+      <div style="font-size:10pt;line-height:1.5">Maillage / post-traitement de la chaîne open source. <span style="color:#5A6B78">Dans la chaîne principale, le maillage se fait dans <strong>Ansys Meshing</strong> (ou Fluent Meshing) et le post dans <strong>Fluent / CFD-Post</strong>.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">J11</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Capella</strong> <span style="color:#5A6B78;font-size:10pt">(Eclipse, v7.1.0, juillet 2026)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · open-source</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">mbse-capella.org</span></div>
+      <div style="font-size:10pt;line-height:1.5">MBSE Arcadia — « langage Thales ». Créé par Thales, ouvert en 2014. <span style="color:#5A6B78"><strong>Limites :</strong> Java, Win/Mac/Linux.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">J5</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">PyMAPDL / PyAnsys</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">mapdl.docs.pyansys.com</span></div>
+      <div style="font-size:10pt;line-height:1.5">Piloter Ansys en Python (cas, post) : <code>pip install ansys-mapdl-core</code>. Nécessite une licence Ansys locale ; la doc PyMAPDL <strong>gère explicitement l'installation Student</strong> (lancement en mode SMP). <span style="color:#5A6B78">Les limites Student s'appliquent. La compatibilité de PyACP et PyFluent avec la licence Student n'est pas documentée : n'en fais pas dépendre le planning.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">J1</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Python 3 · pyNastran · MATLAB / Octave</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit / licence ESTIA</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">python.org · pypi · octave.org</span></div>
+      <div style="font-size:10pt;line-height:1.5">Environnement dédié (<code>python -m venv</code> ou Miniconda) : <code>numpy scipy matplotlib pandas ansys-mapdl-core</code> pour le V-n, la CLT, le flottement, le réseau thermique 1D et les FFT d'essai. <span style="color:#5A6B78">pyNastran seulement si tu fais le bonus Nastran. MATLAB en repli via la licence ESTIA (tant qu'elle est active), sinon <strong>Octave</strong>.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">J1</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Arduino IDE 2 ou VS Code + PlatformIO (ESP32)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">arduino.cc · github.com/pioarduino</span></div>
+      <div style="font-size:10pt;line-height:1.5">Firmware d'acquisition des bancs (J12-13). Le plus simple : <strong>Arduino IDE 2</strong> + paquet de cartes Espressif <strong>esp32 3.3.x</strong>. <span style="color:#5A6B78">Sous PlatformIO, utiliser la plateforme communautaire <strong>pioarduino</strong> : la plateforme officielle est restée au core 2.x. Bibliothèques : <strong>HX711_ADC</strong> (olkal, lecture non bloquante) + une bibliothèque MPU6050 ou ADXL345 (Adafruit). Installe l'IDE dès J1 pour tester la carte à la réception du colis.</span></div>
+    </div>
+  </aside>
+  <aside style="display:grid;grid-template-columns:26pt 1fr;gap:0 10pt;border-top:1px solid #DED2B9;border-bottom:1px solid #DED2B9;padding:8pt 0;margin-bottom:12pt">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5pt;color:#C8412A;font-weight:600;text-align:right">J1</div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">Git / GitHub Desktop · VS Code · Overleaf</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit</span><span style="font-size:9pt;color:#7B8894;font-family:'IBM Plex Mono',monospace">git-scm.com · code.visualstudio.com · overleaf.com</span></div>
+      <div style="font-size:10pt;line-height:1.5">Dépôt <code>drone-wing-justification</code>, édition des scripts, rédaction du dossier (Overleaf en ligne, rien à installer). <span style="color:#5A6B78">Ajoute un <code>.gitignore</code> pour les résultats Ansys lourds (<code>*_files/</code>, <code>*.rst</code>, <code>*.dat</code>) : on ne versionne que les <code>.wbpz</code> archivés et les exports CSV.</span></div>
+    </div>
+  </aside>
+
+  <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:10pt 12pt;margin-bottom:16pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#A8331E;font-weight:600;margin-bottom:3pt">Piège licences</div>
+    <p style="margin:0;font-size:10pt;line-height:1.5">Tu es étudiant ESTIA <strong>jusqu'à fin septembre 2026</strong>. Ansys Student 2026 R1 ne demande pas de justificatif et reste valable jusqu'au <strong>31/03/2027</strong> : c'est lui qui porte le projet. MSC (Cadence) et Altair (Siemens) exigent un statut étudiant ou un e-mail d'école : ils ne sont <strong>pas nécessaires</strong>, mais si tu veux Nastran en bonus, demande-le <strong>avant le 30 septembre</strong>. CATIA n'est plus utile (SolidWorks installé). Pas d'Ansys Student 2026 R2 prévue : ne réinstalle rien en cours de projet.</p>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 4pt;padding-left:8pt;border-left:3px solid #C8412A">3.2 Référentiels</h3>
+  <p style="font-size:10pt;color:#63727E;margin:0 0 10pt">Accès vérifié le 7 sept. 2026.</p>
+
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">STANAG 4671 / AEP-4671 (USAR)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#F4EEDF;color:#7A6642;padding:1pt 5pt">Accès public restreint</span></div>
+    <div style="font-size:10pt;line-height:1.5">Navigabilité UAV <strong>à voilure fixe militaire, 150 kg à 20 000 kg</strong>, <strong>structuré sur EASA CS-23</strong> (origine standard DGA français). Édition en vigueur = <strong>Édition 3 (2 avril 2019)</strong> renvoyant à <strong>AEP-4671 Éd. B</strong> ; Éd. 1 = sept. 2009, Éd. 2 = fév. 2017. Sert pour : cas de charge, facteurs, exigences structurales. <span style="color:#5A6B78">Un texte de la <em>draft Edition 1</em> circule (dror-aero.com/link/usar_edition_1.pdf) ; EverySpec liste le STANAG ; version à jour payante (Accuris/GlobalSpec).</span></div>
+    <div style="background:#FBEAE4;border-left:3px solid #C8412A;padding:7pt 10pt;margin-top:6pt;font-size:10pt;line-height:1.5"><strong>Piège :</strong> ton drone de 10-15 kg est SOUS le seuil de 150 kg → tu utilises le STANAG comme <strong>cadre méthodologique</strong>, pas comme applicabilité stricte : à écrire explicitement dans la matrice.</div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">EASA CS-23</strong> <span style="color:#5A6B78;font-size:10pt">(Normal/Utility/Aerobatic/Commuter)</span><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · easa.europa.eu</span></div>
+    <div style="font-size:10pt;line-height:1.5">Subpart C : <strong>23.303</strong> (coef. sécurité 1,5), <strong>23.333</strong> (enveloppe), <strong>23.335</strong> (vitesses de calcul V_C, V_D), <strong>23.337</strong> (facteurs de manœuvre), <strong>23.341</strong> (rafales). Base du diagramme V-n. Easy Access Rules / CS-23.</div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">EASA CS-25</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit</span></div>
+    <div style="font-size:10pt;line-height:1.5">Gros avions ; culture « limit/ultimate », 25.303 coef. 1,5.</div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">AMC 20-29 / FAA AC 20-107B</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · easa · faa</span></div>
+    <div style="font-size:10pt;line-height:1.5">Bonnes pratiques <strong>composites</strong> : building-block, knock-down environnement, damage tolerance, B-basis. Harmonisés (AMC 20-29 = AC 20-107B).</div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">MIL-STD-810H</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · EverySpec</span></div>
+    <div style="font-size:10pt;line-height:1.5">Environnement : <strong>Méthode 514.8 vibration</strong> (Procédures I-IV, profils avion à hélice/UAV en annexes B-F), <strong>501.7 haute temp.</strong>, <strong>502.7 basse temp.</strong></div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">MIL-HDBK-17 (/1F, /2, /3F)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · EverySpec / DTIC</span></div>
+    <div style="font-size:10pt;line-height:1.5">Allowables composites, définitions A/B-basis, méthodo d'essais, design/analyse. <span style="color:#5A6B78"><strong>CMH-17 databank</strong> (données matériaux) = <strong>payant</strong> (Hexagon).</span></div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">UE 2019/947 (opérations) + 2019/945 (produit)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · EUR-Lex</span></div>
+    <div style="font-size:10pt;line-height:1.5">Catégories <strong>Open/Specific/Certified</strong> ; comparatif civil pour la matrice.</div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;padding:8pt 0">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">SORA 2.5 (JARUS)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#E7F0EA;color:#235645;padding:1pt 5pt">Gratuit · easa</span></div>
+    <div style="font-size:10pt;line-height:1.5">Méthode d'évaluation de risque, indice <strong>SAIL I-VI</strong> (GRC + ARC). Intégrée aux AMC/GM 2019/947 (ED Decision 2025/018/R, sept. 2025 ; Easy Access Rules UAS révision juin 2026).</div>
+  </aside>
+  <aside style="border-top:1px solid #DED2B9;border-bottom:1px solid #DED2B9;padding:8pt 0;margin-bottom:16pt">
+    <div style="display:flex;align-items:baseline;gap:8pt;flex-wrap:wrap;margin-bottom:3pt"><strong style="font-size:11pt">DO-160G (RTCA)</strong><span style="font-size:8pt;letter-spacing:.08em;text-transform:uppercase;background:#FBEAE4;color:#A8331E;padding:1pt 5pt">Payant · from $849.00</span></div>
+    <div style="font-size:10pt;line-height:1.5">Conditions environnementales équipements embarqués (identique EUROCAE ED-14G). À <strong>citer</strong>, pas à acheter. <span style="color:#5A6B78">PDF mono-utilisateur listé « Priced From $849.00 » (Accuris), pack complet ~1 019 $.</span></div>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">3.3 Cours &amp; lectures <span style="font-weight:400;font-size:10pt;color:#63727E">(gratuits sauf mention)</span></h3>
+  <table>
+    <thead><tr><th style="width:32%">Ressource</th><th style="width:33%">Chapitres à lire</th><th style="width:13%">Durée</th><th>Lien / accès</th></tr></thead>
+    <tbody>
+      <tr><td><strong>FAA Pilot's Handbook of Aeronautical Knowledge</strong> (FAA-H-8083-25)</td><td>Aérodynamique, facteurs de charge, enveloppe de vol</td><td>2-3 h ciblées</td><td>faa.gov (PDF gratuit)</td></tr>
+      <tr><td><strong>FAA Aviation Maintenance Technician Handbook — Airframe</strong> (FAA-H-8083-31B)</td><td>Construction cellule, structures, réparations composites</td><td>1-2 h</td><td>faa.gov (PDF gratuit) ; Open Textbook Library</td></tr>
+      <tr><td><strong>TU Delft edX — Introduction to Aeronautical Engineering</strong></td><td>Portance, polaire, performances</td><td>audit gratuit</td><td>edX / online-learning.tudelft.nl</td></tr>
+      <tr><td><strong>TU Delft edX — Introduction to Aerospace Structures and Materials</strong></td><td>Composites, allowables, structures</td><td>audit gratuit</td><td>edX (DelftX)</td></tr>
+      <tr><td><strong>MIT OCW 16.20 Structural Mechanics</strong></td><td>Poutres, torsion, panneaux</td><td>ciblé</td><td>ocw.mit.edu/courses/16-20</td></tr>
+      <tr><td><strong>MIT OCW 16.001 Unified Engineering</strong> (Materials &amp; Structures)</td><td>Bases matériaux/structures aéro</td><td>ciblé</td><td>ocw.mit.edu/courses/16-001</td></tr>
+      <tr><td><strong>BIA (Brevet d'Initiation Aéronautique)</strong> — HorizonBIA</td><td>Culture aéro générale FR (aérodynamique, météo, réglementation)</td><td>survol</td><td>horizonbia.com (gratuit)</td></tr>
+      <tr><td><strong>AMC 20-29</strong></td><td>Building-block, knock-down</td><td>1 h</td><td>easa.europa.eu</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">3.4 BOM matériel ≤ 100 € (deux variantes) + planning des commandes</h3>
+  <div style="display:flex;align-items:baseline;gap:9pt;margin:0 0 5pt"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:15pt;color:#C8412A">A</span><strong style="font-size:11pt">Variante « tout AliExpress » — ~40-60 €, à commander le Jour 0 ou avant</strong></div>
+  <table>
+    <thead><tr><th style="width:48%">Article</th><th style="width:22%">Prix indicatif</th><th>Rôle</th></tr></thead>
+    <tbody>
+      <tr><td>ESP32 DevKit</td><td>~5 €</td><td>Acquisition essais</td></tr>
+      <tr><td>MPU6050 (ou ADXL345) accéléromètre</td><td>~2-3 €</td><td>Essai modal par impact</td></tr>
+      <tr><td>HX711 + cellule de charge 5 kg</td><td>~5-14 € (kit combiné vu à ~13,7 $)</td><td>Essai de raideur</td></tr>
+      <tr><td>Tube carbone (Ø ~8-12 mm, 1 m)</td><td>~8-15 €</td><td>Longeron</td></tr>
+      <tr><td>Plaque carbone fine + mousse XPS</td><td>~10 €</td><td>Peau / caisson</td></tr>
+      <tr><td>Kit fibre de verre + résine époxy</td><td>~10-15 €</td><td>Stratifié / collage</td></tr>
+      <tr><td>Consommables (comparateur à cadran, câbles Dupont, colle)</td><td>~10 €</td><td>Montage</td></tr>
+    </tbody>
+  </table>
+  <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:10pt 12pt;margin:0 0 14pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#A8331E;font-weight:600;margin-bottom:3pt">Piège · délai Chine = risque n° 1</div>
+    <p style="margin:0;font-size:10pt;line-height:1.5">La livraison AliExpress dépasse souvent la durée du projet. <strong>Commande le Jour 0</strong>, et <strong>prévois systématiquement un plan B local</strong> pour ne pas bloquer les essais (J12-13).</p>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:9pt;margin:0 0 5pt"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:15pt;color:#C8412A">B</span><strong style="font-size:11pt">Variante « qualité modélisme » — ~90-100 €, livraison rapide</strong></div>
+  <ul>
+    <li>Plaques/tubes carbone : <strong>PB-Modélisme</strong>, <strong>Guixmodel</strong>, magasins modélisme FR (délai 2-4 j).</li>
+    <li>Capteurs : <strong>Amazon Prime FR</strong> (ex. <em>DIYmalls cellule 5 kg + HX711</em> vendu et expédié par Amazon ; ESP32 ELEGOO ; ADXL345). Livraison 24-48 h.</li>
+    <li>Mousse XPS, masses de test (sacs de sable, bouteilles d'eau 1 L = 1 kg pratique), colle époxy bi-composant : <strong>Leroy Merlin</strong> (plan B immédiat).</li>
+  </ul>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9pt;margin:10pt 0 0">
+    <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:10pt 12pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:4pt">Fablab — fabrication du spécimen</div>
+      <p style="margin:0 0 5pt;font-size:10pt;line-height:1.5"><strong>Artilect (Toulouse centre)</strong> : impression 3D <strong>3-4 €/h</strong>, découpe laser <strong>25-36 €/h</strong>, adhésion donnant <strong>−33 % sur les machines</strong> ; ateliers d'initiation ~2-3 h ; machines Ultimaker/Creality, laser Trotec/Epilog.</p>
+      <p style="margin:0;font-size:10pt;line-height:1.5"><strong>FabLab de l'Université de Toulouse</strong> (CampusFab / Le Catalyseur) : adhésion <strong>7 € étudiant</strong> (30 € personnels) — le moins cher. Autres : <strong>Fabric'INSA</strong>, RoseLab.</p>
+    </aside>
+    <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:10pt 12pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:4pt">Planning des commandes</div>
+      <p style="margin:0;font-size:10pt;line-height:1.5">Jour 0 → passer commande A (AliExpress) <em>et</em> réserver le budget B (Amazon Prime) ; si le colis Chine n'est pas arrivé au Jour 10, bascule sur B/Leroy Merlin sans hésiter.</p>
+    </aside>
+  </div>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">4</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 4</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Méthode d'ingénierie</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">4.1 Cycle en V allégé</h3>
+  <aside style="background:#12283C;color:#F4EFE3;padding:13pt 15pt;margin:0 0 9pt">
+    <div style="display:flex;flex-wrap:wrap;gap:6pt 0;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9.5pt;line-height:1.4">
+      <span style="background:#1D4568;padding:3pt 7pt">Besoin (mission ISR)</span><span style="color:#F0A88E;padding:0 5pt">→</span>
+      <span style="background:#1D4568;padding:3pt 7pt">Exigences (spéc.)</span><span style="color:#F0A88E;padding:0 5pt">→</span>
+      <span style="background:#1D4568;padding:3pt 7pt">Architecture (voilure)</span><span style="color:#F0A88E;padding:0 5pt">→</span>
+      <span style="background:#1D4568;padding:3pt 7pt">Conception (drapage, longeron)</span><span style="color:#F0A88E;padding:0 5pt">→</span>
+      <span style="background:#C8412A;padding:3pt 7pt">Analyse (aéro, FEM, modale, thermique)</span><span style="color:#F0A88E;padding:0 5pt">→</span>
+      <span style="background:#C8412A;padding:3pt 7pt">Essai (raideur, modal)</span><span style="color:#F0A88E;padding:0 5pt">→</span>
+      <span style="background:#C8412A;padding:3pt 7pt">Vérification (matrice de conformité)</span>
+    </div>
+  </aside>
+  <p>La branche descendante (gauche) définit <em>ce qu'on veut</em> ; la branche montante (droite) <em>prouve qu'on l'a atteint</em>. La matrice de conformité fait le lien entre les deux.</p>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">4.2 Gestion des exigences &amp; matrice de conformité <span style="font-weight:400;font-size:10pt;color:#63727E">(document central)</span></h3>
+  <p>Chaque exigence = une ligne : <strong>ID · énoncé · source (STANAG/CS-23/MIL-STD) · Moyen de Conformité (MoC) · chapitre qui la traite · résultat (RF/marge) · statut (ouvert/justifié/non couvert)</strong>. Les 4 <strong>MoC</strong> classiques :</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7pt;margin-bottom:12pt">
+    <aside style="border-top:3px solid #1D4568;background:#F6F0E2;padding:8pt 9pt"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:13pt;color:#12283C;margin-bottom:2pt">Analyse</div><div style="font-size:9.5pt;line-height:1.45;color:#3F4E5A">Calcul/FEM — l'essentiel de ton projet.</div></aside>
+    <aside style="border-top:3px solid #C8412A;background:#F6F0E2;padding:8pt 9pt"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:13pt;color:#12283C;margin-bottom:2pt">Essai</div><div style="font-size:9.5pt;line-height:1.45;color:#3F4E5A">Tes 2 essais réels.</div></aside>
+    <aside style="border-top:3px solid #2C6B57;background:#F6F0E2;padding:8pt 9pt"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:13pt;color:#12283C;margin-bottom:2pt">Similarité</div><div style="font-size:9.5pt;line-height:1.45;color:#3F4E5A">Référence à un produit qualifié, ex. DT26.</div></aside>
+    <aside style="border-top:3px solid #2E6893;background:#F6F0E2;padding:8pt 9pt"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:13pt;color:#12283C;margin-bottom:2pt">Inspection</div><div style="font-size:9.5pt;line-height:1.45;color:#3F4E5A">Vérification visuelle/documentaire.</div></aside>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">4.3 Bonnes pratiques de note de calcul BE</h3>
+  <div style="display:grid;gap:6pt;margin-bottom:14pt">
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">1</span><div><strong>Hypothèses en tête de note</strong> (masse, vitesses, n, matériaux, conditions limites) — jamais enfouies.</div></aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">2</span><div><strong>Unités SI cohérentes</strong> ; en FEM, fixe un système (ex. tonne-mm-s-MPa pour Nastran/Ansys) et <strong>vérifie une masse connue</strong>.</div></aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">3</span><div><strong>Convergence de maillage</strong> : raffiner jusqu'à variation &lt; 5 % sur la grandeur d'intérêt.</div></aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">4</span><div><strong>Vérification d'ordre de grandeur</strong> systématique (hand-calc avant FEM).</div></aside>
+    <aside style="display:grid;grid-template-columns:19pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A;font-weight:600">5</span><div><strong>Traçabilité</strong> : version, date, auteur, source de chaque donnée. Un résultat sans hypothèse source = résultat mort.</div></aside>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">4.4 Gestion du temps (timeboxing)</h3>
+  <p>Plafond d'heures par sous-étape (indiqués en Section 6). <strong>Règle du plafond</strong> : à échéance, tu figes, tu écris « limite atteinte — état : … — reste à faire : … », tu passes. Tu t'ennuies vite sur le répétitif : c'est exactement pour ça qu'on découpe en livrables courts et variés, et qu'on automatise le répétitif avec Claude Code.</p>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">4.5 Usage raisonné de Claude Code — et le chemin « sans IA »</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9pt;margin-bottom:10pt">
+    <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:10pt 12pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:4pt">On délègue</div>
+      <p style="margin:0;font-size:10pt;line-height:1.5">Squelettes de scripts (CLT, FFT, tracé V-n), parsing de fichiers résultats, génération de cas de calcul paramétrés, boucles PyMAPDL, mise en forme LaTeX/Markdown, code d'acquisition ESP32.</p>
+    </aside>
+    <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:10pt 12pt">
+      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#A8331E;font-weight:600;margin-bottom:4pt">On ne délègue jamais</div>
+      <p style="margin:0;font-size:10pt;line-height:1.5">Le choix des hypothèses, la sélection des cas de charge, l'interprétation physique, la validation des ordres de grandeur, la décision « RF acceptable ou non ».</p>
+    </aside>
+  </div>
+  <p><strong>Chemin sans IA équivalent</strong> documenté à chaque sous-étape : tu dois être capable de refaire le calcul à la main / à la calculette / dans un tableur. En entretien, on te demandera <em>le raisonnement</em>, pas le prompt.</p>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 14pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">5</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 5</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Planning 14 jours</h2>
+      <p style="margin:3pt 0 0;font-size:10pt;color:#63727E">Matin 4 h / après-midi 4 h. Chaque jour : un livrable visible, un critère « fait / pas fait », et ce qu'on coupe si on est en retard.</p>
+    </div>
+  </div>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J1</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Finir installs (SolidWorks, Ansys 2026 R1) + XFLR5, Python, Capella, Arduino IDE, Git</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Spécification + hypothèses de projet + <strong>commande BOM</strong></div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Fiche de spécification v1 + panier commandé</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Spéc rédigée &amp; commande partie</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>CAO détaillée</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J2</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fiche V-n + charges ; construire diagramme V-n (Python)</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>XFLR5 : géométrie voilure, polaires profil</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Diagramme V-n + polaires</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>V-n tracé, n_max/V_D fixés</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Balayage multi-profils</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J3</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>XFLR5 : distribution de portance (LLT/VLM), Schrenk à la main</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Extraction charges à n_max/n_min → torseur par section</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note de charges + fichier charges</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Charges exportées</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Analyse de stabilité</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J4</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fiche CFD 2D ; maillage profil (Ansys Meshing, inflation, &lt; 1 M cellules)</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>CFD 2D <strong>Fluent</strong> (SA ou k-ω SST), convergence, Cl/Cd vs XFLR5</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Rapport CFD 2D (y+, résidus, écart XFLR5)</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Cas convergé</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>2ᵉ angle d'incidence · contre-vérif SU2</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J5</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fiche CLT ; script ABD + Tsai-Wu (Python)</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Dimensionnement drapage à la main (RF pli)</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Script CLT validé + drapage v1</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>RF pli calculés</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Optimisation drapage</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J6</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>FEM coques stratifiées : surfaces SolidWorks → <strong>ACP</strong> (plis) → Mechanical, CL</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Cas n_max/n_min : flèche, contraintes, RF</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Modèle FEM + résultats statiques</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>RF FEM obtenus</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Sous-modèle local</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J7</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Flambement linéaire peau supérieure ; convergence maillage</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Comparaison main/FEM, note d'écart</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note « main vs FEM » + flambement</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Écart commenté &lt; 15 % visé</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Étude paramétrique</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J8</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fiche modale ; analyse modale FEM (flexion/torsion)</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Séparation fréq. flexion/torsion ; (bonus) contre-vérif Nastran SOL 103</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Modes propres + séparation flexion/torsion</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>f1…f5 obtenues</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Nastran (bonus, non installé par défaut)</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J9</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fiche random ; PSD MIL-STD-810H 514, réponse, RMS, 3σ</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Flottement 1er ordre en Python (modes Ansys → marge fréquentielle/vitesse)</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note vibratoire (RMS, RF 3σ)</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>RF 3σ calculé</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Flottement détaillé</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J10</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fiche thermique ; réseau 1D Python (pod ~30 W)</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Thermique stationnaire Mechanical OU CHT Fluent (plafond)</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note thermique (T_ESC, marge Tg)</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Marge Tg calculée</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>CHT Fluent → 1D seul</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J11</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fiche Capella/Arcadia ; analyse opérationnelle + système</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Allocation exigences → voilure ; ou traçabilité tableur</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Modèle Capella léger (4 diagrammes)</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Allocation faite</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Capella → tableur exigences</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J12</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Fabrication spécimen (fablab / à la maison) + cure</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Montage bancs d'essai (câblage ESP32, code acquisition)</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Spécimen + bancs prêts</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Spécimen curé, capteurs OK</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Géométrie simplifiée</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;padding:9pt 0"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J13</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Essai raideur (masses + comparateur/HX711) vs FEM</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Essai modal par impact (FFT) vs f1 calculée</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Tableau de corrélation essai/calcul</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>2 essais faits</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>1 seul essai si panne</div></div></div></aside>
+
+  <aside style="display:grid;grid-template-columns:40pt 1fr;gap:0 11pt;border-top:1px solid #DED2B9;border-bottom:1px solid #DED2B9;padding:9pt 0;margin-bottom:12pt"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:22pt;line-height:1;color:#C8412A">J14</div><div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 14pt;margin-bottom:6pt"><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Matin</span>Rédaction dossier (assemblage, matrice de conformité)</div><div style="font-size:10pt;line-height:1.45"><span style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#7B8894;display:block">Après-midi</span>Valorisation : GitHub, LinkedIn, CV, pitch, Q/R</div></div><div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#DED2B9;font-size:9.5pt;line-height:1.4"><div style="background:#F6F0E2;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Dossier 20-30 p. + dépôt publié</div><div style="background:#E7F0EA;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Fait / pas fait</span>Dossier livré</div><div style="background:#FBEAE4;padding:5pt 8pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">On coupe</span>Annexes secondaires</div></div></div></aside>
+
+  <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:10pt 12pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Tampon</div>
+    <p style="margin:0;font-size:10pt;line-height:1.5">Les demi-journées « optionnel » (Nastran, CFD 2ᵉ point, CHT Fluent) sont tes réserves. Si tu es à l'heure, tu les fais ; sinon, elles sautent sans casser la chaîne.</p>
+  </aside>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 14pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">6</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 6</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Les sous-étapes &amp; fiches de cours</h2>
+    </div>
+  </div>
+  <blockquote style="margin:0 0 16pt;padding:9pt 0 9pt 12pt;border-left:3px solid #DED2B9;font-size:10pt;line-height:1.5;color:#3F4E5A">Convention : chaque sous-étape suit le gabarit <em>objectif · problématique · théorie · méthode · sans IA/avec IA · livrable · critère · piège · temps · matrice.</em></blockquote>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">1</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Spécification &amp; hypothèses de projet</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J1 · 4 h</span>
+  </div>
+  <p><strong>Objectif</strong> : figer les données d'entrée. <strong>Problématique</strong> : sur quels chiffres tout le reste repose-t-il ?</p>
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:11pt 13pt;margin:0 0 10pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:5pt">Fiche — hypothèses de projet (ordres de grandeur sourcés, à consigner)</div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li>Masse max décollage : <strong>~15 kg</strong> (réf. DT26E, à assumer). Envergure <strong>~3 m</strong>, corde moyenne <strong>~0,25-0,30 m</strong>, allongement élevé (planeur tactique).</li>
+      <li>Profil : un profil de planeur/UAV documenté (ex. famille <strong>NACA 4412 / Clark Y / S1223 / MH</strong> — choisis-en un et justifie ; les coordonnées sont publiques).</li>
+      <li>Vitesses : croisière <strong>~16 m/s (57 km/h, réf. DT26E)</strong> ; V_C et V_D à dériver du V-n (voir fiche ci-dessous).</li>
+      <li>Facteurs de charge : <strong>n = +3,8 / −1,52</strong> (catégorie Normal CS-23 ; voir fiche V-n).</li>
+      <li>Matériaux : <strong>UD carbone T300/époxy</strong> (E₁ ≈ 130 GPa, E₂ ≈ 8-9 GPa, G₁₂ ≈ 4,5-5 GPa, ν₁₂ ≈ 0,3, X_t ≈ 1500-2100 MPa, Y_t ≈ 60-75 MPa — valeurs publiques, à citer comme ordres de grandeur, à re-sourcer sur MIL-HDBK-17) ; tissu carbone, verre/époxy, mousse (Rohacell/XPS).</li>
+      <li>Pod moteur/ESC : dissipation <strong>~30 W</strong> (hypothèse). Tg résine époxy modélisme : <strong>~70-120 °C</strong> (à re-sourcer selon résine).</li>
+    </ul>
+  </aside>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Sans IA</em> : tu remplis le tableau à la main depuis les fiches DT26 + CS-23. <em>Avec Claude Code</em> : génère le template Markdown de spéc et un tableau LaTeX.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span><em>Spécification v1</em> (1-2 pages).</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>Chaque valeur a une source ou est marquée « hypothèse ».</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Partir sur des chiffres « au feeling » non tracés.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>Crée les 15-25 premières lignes d'exigences ici.</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">A</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Enveloppe de vol, diagramme V-n, vitesses de calcul, rafales</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Diagramme V-n</strong> : facteur de charge n (rapport portance/poids) en ordonnée, vitesse en abscisse. Frontière basse vitesse = <strong>courbe de portance max</strong> (n = ½ρV²·S·C_Lmax / W) ; frontière haute = <strong>facteurs limites</strong> jusqu'à <strong>V_D</strong>.</li>
+      <li><strong>Facteurs de manœuvre</strong> (CS-23.337 / 14 CFR 23.337) : positif <strong>n need not exceed +3,8</strong> (Normal) ; négatif = <strong>0,4 × positif = −1,52</strong> (Normal). Utility : +4,4/−1,76 ; Aerobatic : +6,0/−3,0.</li>
+      <li><strong>Vitesses (CS-23.335)</strong> : <strong>V_C</strong> (croisière de calcul) ≥ 33·√(W/S) (Normal, en nœuds, W/S en psf) et ≤ 0,9 V_H ; <strong>V_D</strong> (piqué de calcul) ≥ <strong>1,25 V_C</strong>, et ≥ 1,40 V_C,min (Normal). <strong>V_A</strong> (manœuvre) = V_S·√n.</li>
+      <li><strong>Enveloppe de rafales (CS-23.341)</strong> : rafales discrètes (~valeurs de l'ordre de 66/50/25 ft/s EAS à V_B/V_C/V_D à basse altitude, réduites avec l'altitude) avec facteur d'atténuation de Pratt. L'enveloppe finale = <strong>combinaison</strong> manœuvre + rafales.</li>
+      <li><strong>STANAG 4671</strong> : structuré sur CS-23 ; applicabilité <strong>150 kg-20 000 kg</strong> (ton drone est en dessous → cadre méthodologique).</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">2</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Diagramme V-n &amp; enveloppe de vol</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J2 matin · 3-4 h</span>
+  </div>
+  <p><strong>Objectif</strong> : produire l'enveloppe qui fixe les cas de charge. <strong>Problématique</strong> : à quelle vitesse et quel n dimensionne-t-on ?</p>
+  <p><strong>Méthode</strong> : script Python traçant les branches C_Lmax et les plafonds n = +3,8/−1,52, positionner V_A, V_C, V_D.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Sans IA</em> : formules à la main dans un tableur. <em>Avec Claude Code</em> : « génère une fonction Python qui trace un diagramme V-n paramétré par W, S, C_Lmax, n+, n−, V_C, V_D et annote V_A ». <strong>Tu</strong> fournis et vérifies les nombres.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Figure V-n + tableau des points de calcul.</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>V_D ≥ 1,25 V_C ; V_A cohérent ; cas n_max/n_min identifiés.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Confondre vitesse vraie / équivalente / calibrée.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Tenue à n_max charge extrême », « tenue à n_min ».</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">B</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Charges limites/extrêmes, coefficient 1,5, RF, allowables A/B-basis</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Charge limite</strong> : charge max attendue en service. <strong>Charge extrême = 1,5 × limite</strong> (CS-23.303 / CS-25.303 : « a factor of safety of 1.5 must be used » ; FAA 14 CFR 23.2230 : <em>ultimate = limit × 1.5</em>). La structure tient l'extrême <strong>≥ 3 s sans rupture</strong>.</li>
+      <li><strong>Reserve Factor</strong> : <strong>RF = contrainte (ou charge) admissible / contrainte appliquée</strong>. <strong>Marge MS = RF − 1</strong>. RF ≥ 1 ⇒ OK. On calcule les RF <strong>à la charge extrême</strong> pour la rupture, <strong>à la limite</strong> pour la déformation/le flambement selon le critère.</li>
+      <li><strong>Allowables A-basis / B-basis</strong> (MIL-HDBK-17) : valeur au-dessus de laquelle se trouve <strong>99 % (A) ou 90 % (B)</strong> de la population avec <strong>95 % de confiance</strong>. B-basis pour structure redondante, A-basis pour chemin de charge unique.</li>
+      <li><strong>Knock-down</strong> : abattement des allowables pour environnement (chaud/humide) et dommages (AMC 20-29 / AC 20-107B, approche building-block).</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">3</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Aérodynamique &amp; extraction des charges</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J2 pm + J3 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : distribution de portance et torseur par section. <strong>Problématique</strong> : comment passer d'un C_L global à une charge répartie sur le longeron ?</p>
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:11pt 13pt;margin:0 0 10pt;font-size:10pt;line-height:1.5">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:5pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">C</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Aéro de la voilure</div></div>
+    </div>
+    Portance L = ½ρV²S·C_L ; <strong>distribution elliptique idéale</strong> ; <strong>approximation de Schrenk</strong> = moyenne entre distribution réelle de corde et ellipse ; <strong>XFLR5</strong> : LLT (Lifting Line, ailes droites allongées), VLM (Vortex Lattice), méthode panneaux ; limites : non visqueux couplé, décrochage 3D approximatif.
+  </aside>
+  <p><strong>Méthode</strong> : XFLR5 → polaires du profil → analyse d'aile à n_max (V correspondant) → exporter la distribution de portance → intégrer en effort tranchant/moment fléchissant par section (poutre encastrée à l'emplanture).</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Sans IA</em> : Schrenk + intégration manuelle par tranches dans un tableur. <em>Avec Claude Code</em> : script d'intégration effort tranchant/moment à partir du CSV XFLR5. <strong>Tu</strong> valides la portance totale = n·W.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note de charges + fichier <code>loads.csv</code>.</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>∫portance ≈ n·W à ±5 % ; moment à l'emplanture cohérent en ordre de grandeur.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Oublier le poids propre de l'aile / le facteur n dans la portance.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Charges de manœuvre STANAG/CS-23 dérivées ».</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">D</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">CFD 2D : maillage, y⁺, turbulence, convergence, validation</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Maillage</strong> : raffinement en bord d'attaque/fuite et dans la couche limite (inflation). <strong>y⁺</strong> : y⁺ ≈ 1 pour résoudre la paroi (SST), ou y⁺ 30-300 avec lois de paroi.</li>
+      <li><strong>Modèles de turbulence</strong> : <strong>Spalart-Allmaras (SA)</strong> (aéro externe attachée, robuste) ; <strong>k-ω SST</strong> (gradients de pression, décollement).</li>
+      <li><strong>Convergence</strong> : résidus qui chutent de plusieurs ordres + Cl/Cd stabilisés. <strong>Validation</strong> : comparer Cl/Cd à XFLR5 et à des polaires de référence.</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">4</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">CFD 2D du profil</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J4 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : vérifier XFLR5 par une RANS 2D. <strong>Problématique</strong> : XFLR5 est-il fiable à mon incidence de calcul ?</p>
+  <p><strong>Méthode</strong> (mise à jour 15/09) : Workbench <em>Fluid Flow (Fluent)</em> → géométrie 2D du profil dans SpaceClaim/DesignModeler (domaine en C, analyse 2D) → <strong>Ansys Meshing</strong> (inflation en couche limite, <strong>&lt; 1 million de cellules</strong>, limite Student) → <strong>Fluent</strong> 2D double précision, RANS Spalart-Allmaras ou k-ω SST, à l'incidence de croisière → Cl, Cd, Cp → post dans Fluent / CFD-Post. <em>Bonus si réserve de temps</em> : même cas en SU2 8.5 (maillage Gmsh, post ParaView) pour une contre-vérification open source.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Sans IA</em> : suivre un tuto Ansys « NACA 2D airfoil » (Fluent, Ansys Innovation Courses / Cornell SimCafe). <em>Avec Claude Code</em> : générer le fichier de coordonnées du profil, un journal Fluent (<code>.jou</code>) pour balayer l'incidence et un script Python de post-traitement Cp. <strong>Tu</strong> juges la convergence.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Rapport CFD 2D (maillage, y⁺, résidus, Cp, écart XFLR5).</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>Cas convergé ; écart Cl vs XFLR5 &lt; ~10-15 % (sinon, explique).</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Maillage trop grossier en couche limite → y⁺ incohérent → Cd faux.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Validation du modèle aérodynamique ».</div>
+  </aside>
+</section>
+
+<section>
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">E</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Théorie classique des stratifiés (CLT), ABD, Tsai-Wu, drapage</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Pli UD</strong> : Q (matrice de rigidité réduite) dans le repère du pli, tournée en Q̄ selon l'angle.</li>
+      <li><strong>Matrice ABD</strong> : [N; M] = [A B; B D]·[ε⁰; κ]. <strong>A</strong> = rigidité membrane, <strong>D</strong> = rigidité flexion, <strong>B</strong> = couplage (nul si stratifié <strong>symétrique</strong>).</li>
+      <li><strong>Contraintes par pli</strong> : de ε⁰/κ → déformations par pli → contraintes dans le repère du pli.</li>
+      <li><strong>Critères de rupture</strong> : <strong>déformation max</strong>, <strong>Tsai-Wu</strong> (quadratique, interaction des composantes), <strong>Tsai-Hill</strong>. RF = f(critère).</li>
+      <li><strong>Règles de drapage</strong> : <strong>symétrie</strong> (annule B), <strong>équilibre</strong> (autant de +θ que de −θ), règle des <strong>10 %</strong> (≥10 % de plis dans chaque direction 0/±45/90), pas plus de 3-4 plis identiques adjacents.</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">5</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Dimensionnement composite à la main (CLT Python)</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J5 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : drapage justifié + RF par pli. <strong>Problématique</strong> : quel empilement tient le moment d'emplanture ?</p>
+  <p><strong>Méthode</strong> : script Python <code>ABD.py</code> (Q, Q̄, A/B/D, résolution ε⁰/κ, contraintes par pli, Tsai-Wu) ; appliquer le moment de la sous-étape 3 ; itérer le drapage.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Sans IA</em> : dérouler la CLT dans un tableur pour 3-4 plis (fais-le au moins une fois, c'est LA compétence). <em>Avec Claude Code</em> : « écris une classe Python CLT calculant ABD et l'indice de Tsai-Wu par pli, avec test unitaire sur un cas de la littérature ». <strong>Tu</strong> compares à une biblio CLT existante (ex. bibliothèques CLT open-source) pour valider.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span><code>ABD.py</code> + drapage v1 + RF par pli.</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>Script validé sur un cas connu (&lt; 2 % d'écart) ; RF ≥ 1 à la charge extrême.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Oublier la symétrie (B ≠ 0) ; mélanger repère global/pli.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Résistance stratifié à charge extrême ».</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">F</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Caisson/longeron d'aile : flexion, cisaillement, flambement de peau</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Poutre-caisson</strong> : semelles (longeron) reprennent la <strong>flexion</strong> (σ = M·y/I), âmes reprennent le <strong>cisaillement</strong> (flux τ = V·Q/I).</li>
+      <li><strong>Flux de cisaillement</strong> dans un caisson fermé (Bredt pour la torsion : q = T/2A_m).</li>
+      <li><strong>Flambement de peau</strong> : panneau comprimé (semelle sup. en manœuvre positive) → contrainte critique σ_cr ∝ k·E·(t/b)². Vérifier avant la rupture matière.</li>
+      <li><strong>Effets locaux</strong> : introductions d'efforts, découpes, jonctions → concentrations.</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">6</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">FEM coques stratifiées : statique</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J6 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : flèche, contraintes, RF sur la vraie géométrie. <strong>Problématique</strong> : le hand-calc tient-il en 3D avec la vraie forme ?</p>
+  <p><strong>Méthode</strong> (mise à jour 15/09) : surfaces de peau/longeron modélisées dans <strong>SOLIDWORKS</strong> → export Parasolid/STEP → Workbench : <em>Geometry</em> → <strong>ACP (Pre)</strong> (matériau T300/époxy, fabrics, rosettes, oriented selection sets, plies) → <em>Static Structural</em> (Mechanical) → <strong>ACP (Post)</strong> pour les critères par pli (Tsai-Wu, déformation max) et les RF. Repli si ACP bloque : <em>Layered Section</em> dans Mechanical, puis <strong>CalculiX</strong>. CL : encastrement emplanture. Charges n_max/n_min (pression ou efforts nodaux depuis <code>loads.csv</code>). Sortie : flèche en bout, contraintes/déformations par pli, RF.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Avec Claude Code + PyMAPDL</em> : script qui balaie les cas de charge et exporte les RF ; <strong>fonctionne avec Ansys Student</strong> (licence locale, limites Student appliquées → <strong>reste sous 128 000 nœuds/éléments</strong>). PyMAPDL pilote MAPDL, pas l'interface ACP : utilise-le pour les variantes (modèle APDL à section stratifiée) ou le post des fichiers résultats, et garde ACP en GUI. <em>Sans IA</em> : mise en données GUI classique.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Modèle FEM + tableau RF.</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>Masse modèle ≈ masse attendue ; flèche plausible ; RF ≥ 1 extrême.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Dépasser la limite Student de 128 000 (le solveur crée des éléments de contact cachés) ; mauvais repère matériau des plis (rosettes ACP) ; exporter des volumes au lieu de surfaces depuis SolidWorks.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Justification par analyse FEM ».</div>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">7</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Flambement + convergence + écart main/FEM</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J7 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : flambement linéaire de la peau supérieure + note d'écart. <strong>Problématique</strong> : quel est le mode critique, et pourquoi main ≠ FEM ?</p>
+  <p><strong>Méthode</strong> : <em>Eigenvalue Buckling</em> (facteur de charge critique λ) sur la peau comprimée ; étude de convergence de maillage (3 densités) ; tableau comparatif hand-calc vs FEM.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Avec Claude Code</em> : script de convergence (auto-raffinement + tracé). <em>Sans IA</em> : 3 maillages à la main.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note flambement + note « main vs FEM ».</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>Convergence &lt; 5 % ; écart main/FEM &lt; 15 % (sinon expliqué) ; λ_flambement &gt; 1 à la charge extrême.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Flambement linéaire optimiste (pas d'imperfections) → à mentionner.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Non-flambement peau », « convergence démontrée ».</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">G</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Analyse modale &amp; réponse aléatoire, flottement</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Modale</strong> : fréquences propres f_i et déformées (flexion 1, torsion 1, flexion 2…). <strong>Séparation flexion/torsion</strong> : si f_torsion et f_flexion se rapprochent sous charge aéro → risque de <strong>flottement</strong>.</li>
+      <li><strong>Random (MIL-STD-810H 514)</strong> : excitation décrite par une <strong>PSD</strong> (g²/Hz). Réponse → <strong>contrainte RMS</strong> (1σ). <strong>Règle de Miles</strong> : σ_RMS ≈ √(π/2 · f_n · Q · PSD). On dimensionne à <strong>3σ</strong> (99,7 %). <strong>RF_3σ = allowable / (3·σ_RMS)</strong>.</li>
+      <li><strong>Flottement (1er ordre)</strong> : vitesse de flottement estimée par la convergence des modes ; on vérifie une <strong>marge</strong> (typiquement V_flottement &gt; 1,15-1,2 V_D).</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">8</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Analyse modale</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J8 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : modes propres + séparation flexion/torsion. <strong>Méthode</strong> : <em>Modal</em> Ansys (5-10 premiers modes) ; identifier flexion/torsion ; <em>bonus</em> : <strong>contre-vérification Nastran SOL 103</strong> si tu as obtenu la licence étudiante Cadence/MSC (« écart Ansys/Nastran »). Sinon, contre-vérifie f1 par un calcul poutre à la main (Euler-Bernoulli encastrée-libre) ; c'est tout aussi défendable en entretien.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Avec Claude Code</em> : parsing du <code>.f06</code> Nastran via pyNastran, tableau comparatif. <em>Sans IA</em> : lecture directe.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Tableau f_i + déformées + comparatif.</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>f1 physique (aile souple → quelques Hz à quelques dizaines de Hz) ; écart Ansys/Nastran &lt; 10 %.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Masses ponctuelles (moteur/pod) oubliées → f faussées.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Comportement dynamique ».</div>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">9</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Random vibration &amp; flottement</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J9 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : RF à 3σ + marge de flottement. <strong>Méthode</strong> : appliquer une <strong>PSD de la Méthode 514</strong> (profil avion à hélice/UAV, annexes MIL-STD-810H) ; réponse aléatoire FEM → σ_RMS → 3σ → RF ; estimer la marge de flottement au 1er ordre.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Avec Claude Code</em> : script Miles + post random. <em>Sans IA</em> : Miles à la calculette sur le mode dominant.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note vibratoire.</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>RF_3σ ≥ 1 ; marge flottement documentée.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Confondre 1σ et 3σ ; PSD mal unitée (g²/Hz).</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Tenue à l'environnement vibratoire MIL-STD-810H 514 ».</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">H</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Thermique embarquée</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Modes</strong> : conduction (Fourier q = −k∇T), convection (q = h·A·ΔT), rayonnement (souvent négligé ici). <strong>CHT</strong> = conjugate heat transfer (solide + fluide couplés).</li>
+      <li><strong>Réseau thermique 1D</strong> : résistances R = L/(kA) et 1/(hA) en série/parallèle, source ~30 W. T_composant = T_ambiant + Q·ΣR.</li>
+      <li><strong>Critère composite</strong> : garder <strong>T_stratifié &lt; Tg − marge</strong> (la résine perd ses propriétés près de la Tg).</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">10</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Thermique du pod moteur/ESC</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J10 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : T_ESC et marge vs Tg. <strong>Méthode</strong> : réseau 1D Python (rapide, robuste) <strong>et/ou</strong> thermique stationnaire Mechanical ; option CHT Fluent avec <strong>plafond d'heures strict</strong> (air dynamique).</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Avec Claude Code</em> : solveur réseau 1D + étude de sensibilité à h. <em>Sans IA</em> : résistances à la main.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Note thermique.</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>Marge Tg &gt; 0 aux conditions chaudes (MIL-STD-810H 501) ; cohérence 1D vs FEM.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>h de convection choisi arbitrairement → donne une fourchette.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>« Tenue thermique / marge Tg ».</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 14pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">I</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Essais : raideur, modal par impact, FFT, corrélation</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Raideur</strong> : charge P connue → flèche δ mesurée → <strong>k = P/δ</strong> ; comparer k_essai vs k_FEM.</li>
+      <li><strong>Modal par impact</strong> : un choc (marteau/impact) excite tous les modes ; l'accéléromètre capte la réponse ; la <strong>FFT</strong> révèle f1.</li>
+      <li><strong>Incertitudes</strong> : répétabilité (3-5 essais), résolution du comparateur, bruit capteur, conditions d'encastrement (jamais parfait).</li>
+      <li><strong>Corrélation</strong> : |f_essai − f_calc|/f_calc ; un écart de 10-20 % est <strong>normal</strong> en première corrélation (conditions limites réelles ≠ idéales).</li>
+    </ul>
+  </aside>
+
+  <div style="display:flex;align-items:baseline;gap:10pt;margin:0 0 8pt">
+    <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19pt;color:#C8412A;line-height:1">11</span>
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17pt;line-height:1.15;color:#12283C;flex:1">Modèle système Capella / Arcadia</h3>
+    <span style="font-size:9pt;font-family:'IBM Plex Mono',monospace;color:#7B8894;white-space:nowrap">J11 · ~7 h</span>
+  </div>
+  <p><strong>Objectif</strong> : parler « Thales » et montrer l'ouverture système. <strong>Problématique</strong> : comment relier le besoin opérationnel à une exigence de voilure ?</p>
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:11pt 13pt;margin:0 0 10pt;font-size:10pt;line-height:1.5">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:5pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">K</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Capella / Arcadia en bref</div></div>
+    </div>
+    Méthode <strong>Arcadia</strong> (créée par Thales, normalisée AFNOR Z67-140), 4 niveaux : <strong>Analyse Opérationnelle</strong> (que veut l'utilisateur), <strong>Analyse du Besoin Système</strong> (ce que le système doit faire), <strong>Architecture Logique</strong>, <strong>Architecture Physique</strong>. Outil <strong>Capella</strong> (Eclipse, open-source).
+  </aside>
+  <p><strong>Méthode</strong> : modéliser 4 diagrammes minimaux : entités/activités opérationnelles (mission ISR), fonctions système, allocation d'une exigence structurale (« tenir n = +3,8 ») à la voilure, lien de traçabilité. <strong>Repli</strong> si Capella trop lourd : <strong>matrice d'exigences structurée en tableur</strong> avec allocation.</p>
+  <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 12pt;margin:0 0 9pt;font-size:10pt;line-height:1.5">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Sans IA / avec Claude Code</div>
+    <em>Avec Claude Code</em> : générer la trame de traçabilité (repli tableur). <em>Sans IA</em> : construire les diagrammes à la main dans Capella.
+  </aside>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin:0 0 18pt;font-size:9.5pt;line-height:1.45">
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7A6642;display:block">Livrable</span>Modèle Capella léger (ou tableur d'exigences).</div>
+    <div style="background:#E7F0EA;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#235645;display:block">Critère</span>Au moins une exigence tracée du besoin opérationnel jusqu'à la voilure.</div>
+    <div style="background:#FBEAE4;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#A8331E;display:block">Piège</span>Vouloir modéliser tout le drone → timeboxe à 6-8 h.</div>
+    <div style="background:#E9EFF5;padding:7pt 9pt"><span style="font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#1D4568;display:block">Matrice</span>Lie la matrice de conformité au modèle système.</div>
+  </aside>
+
+  <aside style="background:#F6F0E2;border-left:4px solid #1D4568;padding:12pt 14pt;margin:0 0 12pt">
+    <div style="display:flex;align-items:center;gap:9pt;margin-bottom:7pt">
+      <span style="background:#12283C;color:#F4EFE3;font-family:'Instrument Serif',Georgia,serif;font-size:14pt;width:22pt;height:22pt;display:flex;align-items:center;justify-content:center">J</span>
+      <div><div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#1D4568;font-weight:600">Fiche de cours</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:14pt;color:#12283C;line-height:1.2">Certification : Part 21, EASA/DGAC/DSAÉ, STANAG 4671 vs 2019/947 vs CS-23, MoC</div></div>
+    </div>
+    <ul style="margin:0;font-size:10pt;line-height:1.5">
+      <li><strong>Civil habité</strong> : EASA, <strong>CS-23/CS-25</strong>, <strong>Part 21</strong> (DOA = Design Org Approval, POA = Production Org Approval), AMC 20-29 composites.</li>
+      <li><strong>Drones civils</strong> : <strong>UE 2019/947</strong> (opérations : Open/Specific/Certified) + <strong>2019/945</strong> (produit) ; <strong>SORA 2.5</strong> → <strong>SAIL</strong>. DGAC/AlphaTango, scénarios STS en France.</li>
+      <li><strong>Drones militaires</strong> : <strong>DSAÉ</strong> (France), <strong>STANAG 4671 / AEP-4671</strong> (150 kg-20 000 kg, dérivé de CS-23).</li>
+      <li><strong>MoC</strong> : analyse / essai / similarité / inspection. La <strong>matrice de conformité</strong> est le tableau de bord de la navigabilité.</li>
+    </ul>
+  </aside>
+  <p style="font-size:10pt;color:#63727E"><strong>Sous-étapes 12-14</strong> — Fabrication, essais, dossier : voir Sections 7 et 8.</p>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">7</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 7</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Fabrication &amp; essais</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">7.1 Plan de fabrication du spécimen</h3>
+  <p><strong>Option recommandée (simple, robuste)</strong> : un <strong>tronçon de longeron = tube carbone</strong> + une <strong>peau carbone/mousse</strong> collée, longueur ~0,5-0,7 m, encastré à une extrémité (bride bois/impression 3D serrée dans un étau). Alternative : <strong>plaque carbone + mousse XPS</strong> (sandwich) représentative de la peau.</p>
+  <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:10pt 12pt;margin:0 0 16pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#A8331E;font-weight:600;margin-bottom:3pt">Sécurité résine / carbone</div>
+    <p style="margin:0;font-size:10pt;line-height:1.5">Gants nitrile, masque FFP2 au ponçage (poussière de carbone = irritant/conducteur), local ventilé, résine époxy loin de la peau/yeux, respecter le <strong>temps de cure</strong> (souvent 24 h à température ambiante avant essai — planifie la cure la veille des essais).</p>
+  </aside>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:11pt;margin:0 0 16pt">
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;margin-bottom:6pt"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:17pt;color:#C8412A;line-height:1">1</span><h3 style="font-size:12pt;color:#12283C">Banc — essai de raideur</h3></div>
+      <p style="font-size:10pt;line-height:1.5"><strong>Montage</strong> : spécimen encastré horizontalement ; charges par <strong>masses connues</strong> (bouteilles d'eau 1 L = 1 kg, ou plaques). Mesure de flèche par <strong>comparateur à cadran</strong> (simple, fiable) ou <strong>cellule HX711</strong> + ESP32.</p>
+      <p style="font-size:10pt;line-height:1.5"><strong>Protocole</strong> : 5 paliers de charge montée/descente, 3 répétitions ; tracer P vs δ, pente = k.</p>
+      <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:8pt 10pt;font-size:9.5pt;line-height:1.5"><em>Avec Claude Code</em> : code Arduino/ESP32 HX711 (calibration avec masse étalon) + script Python de régression. <em>Sans IA</em> : comparateur + tableur.</aside>
+    </div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;margin-bottom:6pt"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:17pt;color:#C8412A;line-height:1">2</span><h3 style="font-size:12pt;color:#12283C">Banc — essai modal par impact</h3></div>
+      <p style="font-size:10pt;line-height:1.5"><strong>Montage</strong> : accéléromètre (<strong>MPU6050</strong> ou ADXL345) collé en bout de spécimen, ESP32 échantillonnant ; impact bref (petit choc).</p>
+      <p style="font-size:10pt;line-height:1.5"><strong>Protocole</strong> : 5-10 impacts, FFT de la réponse, relever le <strong>pic = f1</strong>.</p>
+      <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:8pt 10pt;font-size:9.5pt;line-height:1.5"><em>Avec Claude Code</em> : firmware d'acquisition rapide + FFT Python (scipy). <em>Sans IA</em> : acquisition + FFT tableur/Octave.</aside>
+    </div>
+  </div>
+  <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:10pt 12pt;margin:0 0 16pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#A8331E;font-weight:600;margin-bottom:3pt">Piège — échantillonnage</div>
+    <p style="margin:0;font-size:10pt;line-height:1.5">Fréquence d'échantillonnage trop basse (respecte Nyquist : Fe ≥ 2× f attendue, vise ≥ 10×) ; MPU6050 limité en cadence → si f1 élevée, privilégie l'ADXL345 en SPI ou réduis la raideur (spécimen plus long).</p>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">7.4 Corrélation essai/calcul</h3>
+  <table>
+    <thead><tr><th style="width:24%">Grandeur</th><th style="width:16%">Calcul (FEM)</th><th style="width:16%">Essai</th><th style="width:12%">Écart</th><th>Explication</th></tr></thead>
+    <tbody>
+      <tr><td>Raideur k (N/mm)</td><td>…</td><td>…</td><td>…%</td><td>encastrement réel, cure, Vf</td></tr>
+      <tr><td>f1 (Hz)</td><td>…</td><td>…</td><td>…%</td><td>masse ajoutée capteur, CL</td></tr>
+    </tbody>
+  </table>
+  <aside style="background:#E7F0EA;border-left:3px solid #2C6B57;padding:10pt 12pt">
+    <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#235645;font-weight:600;margin-bottom:3pt">Critères</div>
+    <p style="margin:0;font-size:10pt;line-height:1.5"><strong>k_essai vs k_FEM à ±20 %</strong> et <strong>f1_essai vs f1_calc à ±15 %</strong> sont d'excellents résultats pour une première corrélation maison. Au-delà, ce n'est pas un échec : <strong>analyse les causes</strong> (rigidité d'encastrement, fraction volumique de fibre réelle, masse du capteur) — c'est exactement le raisonnement de recalage qu'on attend d'un ingénieur essais/calcul.</p>
+  </aside>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">8</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 8</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Livrables finaux &amp; grille d'auto-évaluation</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">8.1 Structure du dossier de justification (20-30 p.)</h3>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#DED2B9;border:1px solid #DED2B9;margin-bottom:14pt;font-size:9.5pt;line-height:1.4">
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">01</span> Résumé + hypothèses de projet</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">02</span> Spécification &amp; exigences</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">03</span> Enveloppe de vol (V-n)</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">04</span> Charges</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">05</span> Aéro (XFLR5) + CFD 2D</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">06</span> Composites : CLT + FEM + RF + flambement</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">07</span> Vibratoire (modale + random 3σ + flottement)</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">08</span> Thermique</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">09</span> Modèle système (Capella)</div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">10</span> Fabrication &amp; essais + corrélation</div>
+    <div style="background:#F6F0E2;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">11</span> <strong>Matrice de conformité</strong></div>
+    <div style="background:#FBF7EC;padding:7pt 9pt"><span style="font-family:'IBM Plex Mono',monospace;color:#C8412A">12</span> Conclusions, limites, perspectives</div>
+  </div>
+  <p style="font-size:10pt;color:#63727E;margin-top:-6pt">Annexes : scripts, notes de calcul.</p>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">8.2 Matrice de conformité <span style="font-weight:400;font-size:10pt;color:#63727E">(extrait de gabarit)</span></h3>
+  <table style="font-size:9.5pt">
+    <thead><tr><th style="width:10%">ID</th><th style="width:22%">Exigence</th><th style="width:22%">Source</th><th style="width:13%">MoC</th><th style="width:9%">Chap.</th><th style="width:12%">Résultat</th><th>Statut</th></tr></thead>
+    <tbody>
+      <tr><td><strong>STR-01</strong></td><td>Tenue à n=+3,8 (extrême ×1,5)</td><td>STANAG 4671/CS-23.337+303</td><td>Analyse+Essai</td><td>6, 13</td><td>RF=…</td><td>Justifié</td></tr>
+      <tr><td><strong>STR-02</strong></td><td>Non-flambement peau</td><td>CS-23</td><td>Analyse</td><td>7</td><td>λ=…</td><td>Justifié</td></tr>
+      <tr><td><strong>DYN-01</strong></td><td>Séparation flexion/torsion</td><td>Bonne pratique</td><td>Analyse</td><td>8</td><td>Δf=…</td><td>Justifié</td></tr>
+      <tr><td><strong>ENV-01</strong></td><td>Random MIL-STD-810H 514 (3σ)</td><td>MIL-STD-810H</td><td>Analyse</td><td>9</td><td>RF_3σ=…</td><td>Justifié</td></tr>
+      <tr><td><strong>THM-01</strong></td><td>Marge Tg</td><td>MIL-STD-810H 501</td><td>Analyse</td><td>10</td><td>ΔT=…</td><td>Justifié</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">8.3 Arborescence GitHub</h3>
+  <pre>drone-wing-justification/
+├── README.md (résumé, images, résultats clés)
+├── 00_specification/
+├── 01_loads_vn/           (script V-n, loads.csv)
+├── 02_aero_xflr5_cfd/
+├── 03_composites_clt_fem/ (ABD.py, modèles)
+├── 04_dynamics/
+├── 05_thermal/
+├── 06_mbse_capella/
+├── 07_test/               (firmware, données, FFT)
+├── 08_report/             (dossier PDF, matrice)
+└── tools/ (scripts Claude Code + versions "manuelles")</pre>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">8.4 Grille de notation <span style="font-weight:400;font-size:10pt;color:#63727E">(façon école — pondération)</span></h3>
+  <table>
+    <thead><tr><th style="width:26%">Critère</th><th style="width:9%">Poids</th><th style="width:21%">Non acquis</th><th style="width:21%">Partiel</th><th>Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>Exigences &amp; matrice de conformité</td><td><strong>15 %</strong></td><td>pas de matrice</td><td>matrice partielle</td><td>matrice complète, MoC tracés</td></tr>
+      <tr><td>Charges &amp; V-n</td><td><strong>10 %</strong></td><td>n non justifié</td><td>V-n tracé</td><td>cas de charge dérivés proprement</td></tr>
+      <tr><td>Aéro + CFD</td><td><strong>10 %</strong></td><td>pas de CFD</td><td>CFD non convergée</td><td>CFD convergée + écart XFLR5 commenté</td></tr>
+      <tr><td>Composites (CLT+FEM+RF)</td><td><strong>25 %</strong></td><td>pas de RF</td><td>RF FEM seul</td><td>main <strong>et</strong> FEM, écart &lt; 15 %</td></tr>
+      <tr><td>Vibratoire (modale+random)</td><td><strong>15 %</strong></td><td>pas de modes</td><td>modes seuls</td><td>random 3σ + RF</td></tr>
+      <tr><td>Thermique</td><td><strong>5 %</strong></td><td>—</td><td>1D seul</td><td>1D + FEM, marge Tg</td></tr>
+      <tr><td>Système (Capella)</td><td><strong>5 %</strong></td><td>rien</td><td>tableur</td><td>modèle Capella tracé</td></tr>
+      <tr><td>Essais + corrélation</td><td><strong>10 %</strong></td><td>pas d'essai</td><td>1 essai</td><td>2 essais + corrélation analysée</td></tr>
+      <tr><td>Dossier &amp; GitHub</td><td><strong>5 %</strong></td><td>brouillon</td><td>correct</td><td>publication-ready</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">8.5 Check-list « prêt pour un recruteur »</h3>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:5pt 16pt;font-size:10pt;line-height:1.45">
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>Dossier PDF relu, hypothèses en tête</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>Matrice de conformité complète</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>GitHub public propre + README avec visuels</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>Au moins un RF &lt; 1,3 discuté (montre que tu sais dimensionner « au juste besoin »)</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>Écarts essai/calcul expliqués</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>Pitch 3 min répété</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>20 questions préparées</span></div>
+  </aside>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">9</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 9</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Valorisation</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">9.1 Trois posts LinkedIn (structure)</h3>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8pt;margin-bottom:9pt">
+    <aside style="background:#F6F0E2;border-top:3px solid #C8412A;padding:10pt 11pt">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:12.5pt;line-height:1.25;color:#12283C;margin-bottom:4pt">« J'ai passé 14 jours à concevoir et casser une aile de drone »</div>
+      <div style="font-size:9.5pt;line-height:1.45;color:#3F4E5A">Accroche + photo du spécimen + 1 résultat (RF, corrélation). Objectif : reach.</div>
+    </aside>
+    <aside style="background:#F6F0E2;border-top:3px solid #C8412A;padding:10pt 11pt">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:12.5pt;line-height:1.25;color:#12283C;margin-bottom:4pt">« Calcul à la main vs FEM : l'écart de 12 % que j'ai dû expliquer »</div>
+      <div style="font-size:9.5pt;line-height:1.45;color:#3F4E5A">Pédagogique, montre la rigueur. Screenshot CLT + FEM.</div>
+    </aside>
+    <aside style="background:#F6F0E2;border-top:3px solid #C8412A;padding:10pt 11pt">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:12.5pt;line-height:1.25;color:#12283C;margin-bottom:4pt">« Du besoin opérationnel à l'exigence de voilure : mon modèle Capella »</div>
+      <div style="font-size:9.5pt;line-height:1.45;color:#3F4E5A">Cible les recruteurs Thales/système. Diagramme Arcadia + matrice.</div>
+    </aside>
+  </div>
+  <p>Chaque post : problème → méthode → résultat chiffré → lien GitHub → 3-5 hashtags (#aerospace #stress #composites #MBSE #Toulouse).</p>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">9.2 Lignes CV</h3>
+  <div style="display:grid;gap:6pt;margin-bottom:14pt">
+    <aside style="display:grid;grid-template-columns:16pt 1fr;font-size:10.5pt;line-height:1.5;background:#FBF7EC;padding:7pt 9pt"><span style="color:#C8412A">›</span><span>« Justification structurale complète d'une voilure composite de drone tactique (CLT + FEM coques Ansys, RF à charges extrêmes, flambement) — écart hand-calc/FEM &lt; 15 %. »</span></aside>
+    <aside style="display:grid;grid-template-columns:16pt 1fr;font-size:10.5pt;line-height:1.5;background:#FBF7EC;padding:7pt 9pt"><span style="color:#C8412A">›</span><span>« Chaîne multiphysique (aéro XFLR5/CFD Ansys Fluent, composites Ansys ACP, modale + random MIL-STD-810H 3σ, thermique) tracée STANAG 4671, matrice de conformité. »</span></aside>
+    <aside style="display:grid;grid-template-columns:16pt 1fr;font-size:10.5pt;line-height:1.5;background:#FBF7EC;padding:7pt 9pt"><span style="color:#C8412A">›</span><span>« Essai instrumenté (ESP32/HX711, modal par FFT) et corrélation essai/calcul. »</span></aside>
+    <aside style="display:grid;grid-template-columns:16pt 1fr;font-size:10.5pt;line-height:1.5;background:#FBF7EC;padding:7pt 9pt"><span style="color:#C8412A">›</span><span>« Modèle MBSE Capella/Arcadia (méthode Thales) + automatisation Python/PyMAPDL. »</span></aside>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">9.3 Pitch d'entretien (3 min)</h3>
+  <aside style="background:#12283C;color:#F4EFE3;padding:15pt 17pt;margin-bottom:16pt">
+    <p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:13pt;line-height:1.5;color:#FFFDF7">« J'ai voulu combler mon manque d'expérience aéro par un projet dense : dimensionner et <strong style="color:#F0A88E;font-weight:400">prouver</strong> une aile de drone tactique 15 kg de bout en bout. J'ai construit le diagramme V-n à partir de CS-23 (+3,8/−1,52, extrême ×1,5), dérivé les charges via XFLR5 vérifié en CFD, dimensionné le stratifié <strong style="color:#F0A88E;font-weight:400">à la main par CLT</strong> puis en <strong style="color:#F0A88E;font-weight:400">FEM coques Ansys</strong>, avec un écart de X %. J'ai enchaîné modale, random 3σ selon MIL-STD-810H, thermique du pod, un modèle système Capella, puis j'ai <strong style="color:#F0A88E;font-weight:400">fabriqué et testé</strong> un tronçon : essai de raideur et modal, corrélés au FEM à ±Y %. Tout est tracé dans une matrice de conformité et publié sur GitHub. Ça m'a appris le vocabulaire et les méthodes de votre BE. »</p>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 4pt;padding-left:8pt;border-left:3px solid #C8412A">9.4 20 questions d'examinateur calcul</h3>
+  <p style="font-size:10pt;color:#63727E;margin:0 0 9pt">Réponses attendues, 2-3 lignes.</p>
+  <div style="column-count:2;column-gap:18pt;font-size:9.5pt;line-height:1.45">
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>1 · Charge limite vs extrême ?</strong> <span style="color:#3F4E5A">Limite = max en service ; extrême = limite × 1,5, tenue ≥ 3 s sans rupture.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>2 · Pourquoi 1,5 ?</strong> <span style="color:#3F4E5A">Facteur historique couvrant incertitudes matériau/charges/fabrication ; CS-23.303/25.303.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>3 · RF et MS ?</strong> <span style="color:#3F4E5A">RF = admissible/appliqué ; MS = RF − 1 ; OK si ≥ 0.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>4 · A-basis vs B-basis ?</strong> <span style="color:#3F4E5A">99 %/90 % de la population au-dessus, à 95 % de confiance ; B pour redondant.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>5 · Matage (bearing) ?</strong> <span style="color:#3F4E5A">Rupture en pression de contact d'un trou/fixation ; vérifier bearing + bypass.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>6 · Flambement : qu'est-ce qui pilote ?</strong> <span style="color:#3F4E5A">Géométrie (t/b), E, conditions aux limites ; σ_cr ∝ E(t/b)².</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>7 · Tsai-Wu vs déformation max ?</strong> <span style="color:#3F4E5A">Tsai-Wu = critère interactif quadratique ; def. max = non interactif, plus physique par mode.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>8 · Rôle de B dans ABD ?</strong> <span style="color:#3F4E5A">Couplage membrane-flexion ; nul si stratifié symétrique — d'où la règle de symétrie.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>9 · Règle des 10 % / drapage ?</strong> <span style="color:#3F4E5A">≥10 % de plis par direction, équilibre ±θ, symétrie, pas trop de plis identiques adjacents.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>10 · Convergence de maillage ?</strong> <span style="color:#3F4E5A">Raffiner jusqu'à variation &lt; ~5 % sur la grandeur d'intérêt.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>11 · Coques vs solides pour un stratifié ?</strong> <span style="color:#3F4E5A">Coques stratifiées (efficaces, plis explicites) sauf effets 3D locaux/délaminage.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>12 · Tolérance aux dommages (composites) ?</strong> <span style="color:#3F4E5A">BVID, no-growth/damage tolerance, knock-down, AMC 20-29/AC 20-107B.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>13 · Fail-safe vs safe-life ?</strong> <span style="color:#3F4E5A">Fail-safe = chemins redondants après défaillance ; safe-life = durée sans fissure.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>14 · Modale : à quoi ça sert ?</strong> <span style="color:#3F4E5A">Éviter résonance/couplage ; base de la réponse dynamique et du flottement.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>15 · Random 3σ / Miles ?</strong> <span style="color:#3F4E5A">σ_RMS via Miles ; on dimensionne à 3σ (99,7 %) ; RF = admissible/3σ.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>16 · Flottement ?</strong> <span style="color:#3F4E5A">Couplage flexion/torsion instable ; marge V_flottement &gt; V_D.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>17 · SOL Nastran ?</strong> <span style="color:#3F4E5A">101 statique linéaire, 103 modes réels, 105 flambement, 111 réponse fréquentielle, 108/112 transitoire.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>18 · Knock-down environnement ?</strong> <span style="color:#3F4E5A">Abattement des allowables en chaud/humide (proche Tg) ; d'où marge Tg.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>19 · y⁺ en CFD ?</strong> <span style="color:#3F4E5A">Distance paroi adimensionnée ; ~1 pour résoudre la couche limite (SST), 30-300 avec lois de paroi.</span></div>
+    <div style="break-inside:avoid;margin-bottom:6pt"><strong>20 · Pourquoi hand-calc si on a le FEM ?</strong> <span style="color:#3F4E5A">Vérifier l'ordre de grandeur, détecter les erreurs de modèle, signer une justification défendable.</span></div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:14pt 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">9.5 Réutilisation pour un poste ingénieur système</h3>
+  <p>Le modèle Capella + la matrice de conformité + la traçabilité besoin→exigence→vérification constituent un mini-dossier MBSE : mets-le en avant pour Thales (Arcadia/Capella est leur méthode maison). Reformule le pitch autour de « j'ai tenu la traçabilité des exigences de bout en bout ».</p>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #12283C">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">10</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#7B8894;margin-bottom:2pt">Section 10</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">Annexes</h2>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">10.1 Glossaire FR / EN</h3>
+  <div style="column-count:2;column-gap:18pt;font-size:10pt;line-height:1.5;margin-bottom:14pt">
+    <div style="break-inside:avoid">Charge limite = <em style="color:#1D4568">limit load</em></div>
+    <div style="break-inside:avoid">Charge extrême = <em style="color:#1D4568">ultimate load</em></div>
+    <div style="break-inside:avoid">Coefficient de sécurité = <em style="color:#1D4568">factor of safety</em></div>
+    <div style="break-inside:avoid">Facteur de réserve = <em style="color:#1D4568">reserve factor (RF)</em></div>
+    <div style="break-inside:avoid">Marge de sécurité = <em style="color:#1D4568">margin of safety (MS)</em></div>
+    <div style="break-inside:avoid">Admissible = <em style="color:#1D4568">allowable</em></div>
+    <div style="break-inside:avoid">Abattement = <em style="color:#1D4568">knock-down</em></div>
+    <div style="break-inside:avoid">Tolérance aux dommages = <em style="color:#1D4568">damage tolerance</em></div>
+    <div style="break-inside:avoid">Sûreté par redondance = <em style="color:#1D4568">fail-safe</em></div>
+    <div style="break-inside:avoid">Durée de vie sûre = <em style="color:#1D4568">safe-life</em></div>
+    <div style="break-inside:avoid">Moyen de conformité = <em style="color:#1D4568">means of compliance (MoC)</em></div>
+    <div style="break-inside:avoid">Drapage = <em style="color:#1D4568">lay-up</em></div>
+    <div style="break-inside:avoid">Pli = <em style="color:#1D4568">ply</em></div>
+    <div style="break-inside:avoid">Stratifié = <em style="color:#1D4568">laminate</em></div>
+    <div style="break-inside:avoid">Flambement = <em style="color:#1D4568">buckling</em></div>
+    <div style="break-inside:avoid">Flottement = <em style="color:#1D4568">flutter</em></div>
+    <div style="break-inside:avoid">Effort tranchant = <em style="color:#1D4568">shear force</em></div>
+    <div style="break-inside:avoid">Moment fléchissant = <em style="color:#1D4568">bending moment</em></div>
+    <div style="break-inside:avoid">Enveloppe de vol = <em style="color:#1D4568">flight envelope</em></div>
+    <div style="break-inside:avoid">Rafale = <em style="color:#1D4568">gust</em></div>
+    <div style="break-inside:avoid">Transition vitreuse = <em style="color:#1D4568">glass transition (Tg)</em></div>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">10.2 Templates</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8pt;margin-bottom:14pt">
+    <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:9pt 11pt;font-size:9.5pt;line-height:1.45"><div style="font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Page de garde note de calcul</div>Titre · Réf · Version · Date · Auteur · Vérificateur · Objet · Hypothèses · Références · Résultats · Conclusion.</aside>
+    <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:9pt 11pt;font-size:9.5pt;line-height:1.45"><div style="font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Matrice de conformité</div>Cf. §8.2.</aside>
+    <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:9pt 11pt;font-size:9.5pt;line-height:1.45"><div style="font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Journal de bord quotidien</div>Date · Bloc matin (fait/pas fait) · Bloc après-midi · Livrable · Heures réelles vs plafond · Blocages · Décisions · À faire demain.</aside>
+    <aside style="background:#F6F0E2;border-left:3px solid #1D4568;padding:9pt 11pt;font-size:9.5pt;line-height:1.45"><div style="font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Fiche d'essai</div>Objet · Montage (schéma) · Matériel · Protocole · Étalonnage · Données brutes · Traitement · Résultat · Incertitudes · Corrélation calcul.</aside>
+  </div>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">10.3 Check-list convergence de maillage</h3>
+  <aside style="display:grid;grid-template-columns:1fr 1fr;gap:5pt 16pt;font-size:10pt;line-height:1.45;margin-bottom:14pt">
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>3 densités testées</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>grandeur d'intérêt &lt; 5 % de variation</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>qualité d'éléments (jacobien, aspect ratio)</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>y⁺ vérifié (CFD)</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>masse/volume conformes</span></div>
+    <div style="display:grid;grid-template-columns:14pt 1fr"><span style="color:#C8412A">☐</span><span>CL non sur-contraintes</span></div>
+  </aside>
+
+  <h3 style="font-size:12pt;color:#12283C;margin:0 0 8pt;padding-left:8pt;border-left:3px solid #C8412A">10.4 Unités &amp; ordres de grandeur (garde-fous)</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8pt;margin-bottom:14pt">
+    <aside style="background:#E9EFF5;border-left:3px solid #2E6893;padding:9pt 11pt;font-size:10pt;line-height:1.5"><div style="font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#1D4568;font-weight:600;margin-bottom:3pt">Système FEM conseillé</div><strong>t-mm-s → N, MPa, tonne</strong> (ρ carbone ≈ 1,6e-9 t/mm³ ; E ≈ 130 000 MPa).</aside>
+    <aside style="background:#E7F0EA;border-left:3px solid #2C6B57;padding:9pt 11pt;font-size:10pt;line-height:1.5"><div style="font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#235645;font-weight:600;margin-bottom:3pt">Ordres de grandeur attendus</div>Moment d'emplanture ~ quelques centaines de N·m ; flèche en bout ~ cm ; f1 aile souple ~ quelques Hz à quelques dizaines de Hz ; σ carbone admissible ~ centaines à &gt; 1000 MPa ; T_ESC &lt; ~60-80 °C visé.</aside>
+  </div>
+
+  <sc-if value="{{ showSources }}" hint-placeholder-val="{{ true }}"><h3 style="font-size:12pt;color:#12283C;margin:0 0 4pt;padding-left:8pt;border-left:3px solid #C8412A">10.5 Sources vérifiées</h3>
+  <p style="font-size:10pt;color:#63727E;margin:0 0 8pt">Consultées le 7 septembre 2026.</p>
+  <div style="column-count:2;column-gap:18pt;font-size:9pt;line-height:1.45;color:#3F4E5A">
+    <div style="break-inside:avoid;margin-bottom:4pt"><strong>[MAJ 15/09/2026]</strong> Ansys Student 2026 R1 — ansys.synopsys.com/academic/students/ansys-student : licence jusqu'au 31/03/2027 ; 128K nœuds/éléments structure, 1M cellules fluide, 4 cœurs, pas d'export géométrie ; bundle incluant ACP Pre &amp; Post, Mechanical, MAPDL, Fluent/CFX, Discovery, SpaceClaim, optiSLang. (Remplace les limites 32 000 / 512 000 de la version 2024 R2.)</div>
+    <div style="break-inside:avoid;margin-bottom:4pt"><strong>[MAJ 15/09/2026]</strong> MSC Nastran/Patran Student — cadence.com/en_US/home/tools/msc-software/academics.html (rachat Hexagon D&amp;E par Cadence finalisé le 23/02/2026 ; taille de modèle limitée, chiffre non publié).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt"><strong>[MAJ 15/09/2026]</strong> Altair Student Edition — siemens.com (…/engineering-student-software/altair-student-edition/) ; via Altair One, e-mail institutionnel, produits renommés Simcenter.</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">SOLIDWORKS 2026 SP04.1 (installé) — remplace CATIA / Onshape / FreeCAD / Fusion pour ce projet.</div>
+    <div style="break-inside:avoid;margin-bottom:4pt"><strong>[MAJ 15/09/2026]</strong> XFLR5 6.62 (sourceforge.net/projects/xflr5, 24/03/2026) ; OpenFOAM v2606 (openfoam.com) ; SU2 8.5.0 (github.com/su2code/SU2/releases, 27/04/2026) ; CalculiX 2.23 Windows (github.com/calculix/CalculiX-Windows) ; Gmsh 4.15.2 (gmsh.info, 24/03/2026) ; ParaView 6.0.x stable (6.2.0-RC2 le 12/09/2026) ; Salome-Meca 2025 / Code_Aster (code-aster.org).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">Capella 7.1.0 (mbse-capella.org ; projects.eclipse.org/projects/polarsys.capella, release 10/07/2026 ; créé par Thales, ouvert 2014, Arcadia normalisée AFNOR Z67-140).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">PyMAPDL (mapdl.docs.pyansys.com — <code>launch_mapdl</code> détecte l'installation Student et lance en SMP).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt"><strong>[MAJ 15/09/2026]</strong> ESP32 : Arduino-ESP32 core 3.3.11 ; PlatformIO via github.com/pioarduino/platform-espressif32 ; HX711_ADC (github.com/olkal/HX711_ADC).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">STANAG 4671 : Wikipedia (NATO STANAG 4671, Éd. 3 avril 2019, AEP-4671 Éd. B, 150 kg-20 000 kg, dérivé CS-23) ; draft Éd. 1 (dror-aero.com) ; EverySpec (NATO-STANAG) ; NATO STO MP-AVT-273-08.</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">EASA CS-23 (23.303/335/337/341) ; CS-25 ; AMC 20-29 ; FAA AC 20-107B — easa.europa.eu / faa.gov ; 14 CFR 23.337, 23.335, 23.2230 (eCFR/govinfo).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">MIL-STD-810H (méthodes 514.8, 501.7, 502.7) — EverySpec / CVG Strategy.</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">MIL-HDBK-17/1F, /2E, /3F — EverySpec / DTIC (A-/B-basis).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">UE 2019/947 &amp; 2019/945 — EUR-Lex/EASA ; SORA 2.5 / SAIL (ED Decision 2025/018/R ; Easy Access Rules UAS révision juin 2026) — easa.europa.eu.</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">DO-160G — RTCA ; prix « from $849 » (Accuris store).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">Delair DT26E (15 kg, 3,3 m / 1,6 m, composite verre/carbone/kevlar + EPP, croisière 57 km/h, endurance 170 min) — delair.aero / aeroexpo.</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">Propriétés T300/époxy (E₁ ~116-146 GPa selon Vf ; T700 E₁ ≈ 128,6 GPa, E₂ ≈ 7,5 GPa, G₁₂ ≈ 4,8 GPa, X_t ≈ 2100 MPa, Y_t ≈ 76 MPa) — NTNU TMM4175 ; arXiv 2305.05289 ; MatWeb.</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">Cours : TU Delft edX (Intro Aeronautical Eng ; Aerospace Structures &amp; Materials, audit gratuit) ; MIT OCW 16.20 &amp; 16.001 ; FAA Pilot's Handbook (FAA-H-8083-25) &amp; Airframe (FAA-H-8083-31B) PDF gratuits ; BIA (Éduscol/HorizonBIA gratuit).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">Fablabs Toulouse : Artilect (3D 3-4 €/h, laser 25-36 €/h, −33 % adhérents — artilect.fr) ; FabLab Université (adhésion 7 € étudiant — catalyseur.utoulouse.fr).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">BOM : AliExpress (ESP32/HX711/MPU6050) ; Amazon.fr (DIYmalls HX711+cellule 5 kg) ; PB-Modélisme, Guixmodel (carbone).</div>
+    <div style="break-inside:avoid;margin-bottom:4pt">Entretiens stress : offres Airbus (flexa.careers) ; Glassdoor Airbus Toulouse ; GaugeHow ; stressebook.</div>
+  </div>
+  <aside style="background:#FBEAE4;border-left:3px solid #C8412A;padding:9pt 12pt;margin-top:10pt;font-size:9.5pt;line-height:1.5">
+    <em>Éléments à reconfirmer par toi au moment de l'usage : (1) ACP est bien listé dans Ansys Student 2026 R1 : vérifie au J6 qu'il s'ouvre et comment un modèle multicouche est compté dans la limite de 128 000 ; (2) limite de nœuds MSC Nastran/Patran Student chez Cadence, seulement si tu fais le bonus Nastran ; (3) prix DO-160G (variable selon revendeur/adhésion RTCA) ; (4) coordonnées et Tg exacte de la résine que tu achètes.</em>
+  </aside>
+</sc-if>
+</section>
+
+<section>
+  <div style="break-before:page;display:flex;align-items:flex-start;gap:14pt;margin:28pt 0 16pt;padding-bottom:10pt;border-bottom:2px solid #C8412A">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38pt;line-height:.8;color:#C8412A">0</div>
+    <div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#C8412A;margin-bottom:2pt">Jour 0 · 2-3 h, la veille</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:22pt;line-height:1.1;color:#12283C">À faire avant de commencer</h2>
+    </div>
+  </div>
+  <div style="display:grid;gap:8pt;margin-bottom:18pt">
+    <aside style="display:grid;grid-template-columns:26pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:16pt;color:#C8412A;line-height:1">1</span><div><strong>Logiciels principaux (MAJ 15/09)</strong> : terminer l'installation de <strong>SOLIDWORKS 2026</strong> et d'<strong>Ansys Student 2026 R1</strong> (PC physique, pas de VM). Ouvrir Workbench et vérifier que <em>ACP (Pre)</em>, <em>Static Structural</em>, <em>Modal</em>, <em>Random Vibration</em>, <em>Steady-State Thermal</em> et <em>Fluid Flow (Fluent)</em> apparaissent. CATIA, Onshape, FreeCAD et Altair ne sont plus nécessaires. <em>Facultatif</em> : licence MSC Nastran Student (Cadence) avant le 30/09, seulement si tu vises le bonus Nastran. Le zip LS-DYNA Student peut être supprimé pour libérer ~700 Mo.</div></aside>
+    <aside style="display:grid;grid-template-columns:26pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:16pt;color:#C8412A;line-height:1">2</span><div><strong>Commandes matériel</strong> : passer la commande <strong>AliExpress (Variante A)</strong> aujourd'hui (délai long) <strong>et</strong> préparer le panier <strong>Amazon Prime (Variante B)</strong> en secours ; repérer le rayon mousse/masses/époxy chez <strong>Leroy Merlin</strong>. Réserver un créneau/adhésion <strong>fablab</strong> (Artilect ou FabLab université).</div></aside>
+    <aside style="display:grid;grid-template-columns:26pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:16pt;color:#C8412A;line-height:1">3</span><div><strong>Installations complémentaires</strong> : XFLR5 6.62, Python 3 (env dédié : numpy/scipy/matplotlib/pandas/ansys-mapdl-core), Capella 7.1.0, Arduino IDE 2 (+ cartes esp32 3.3.x, HX711_ADC, lib MPU6050/ADXL345), Git + VS Code. Gmsh/ParaView/SU2 seulement pour le bonus CFD open source ; OpenFOAM abandonné. Vérifier qu'Ansys Student se lance et affiche ses limites (128K / 1M).</div></aside>
+    <aside style="display:grid;grid-template-columns:26pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:16pt;color:#C8412A;line-height:1">4</span><div><strong>Dépôt GitHub</strong> : créer <code>drone-wing-justification</code> avec l'arborescence §8.3 et un README squelette.</div></aside>
+    <aside style="display:grid;grid-template-columns:26pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:16pt;color:#C8412A;line-height:1">5</span><div><strong>Lecture ciblée 2 h</strong> : FAA Pilot's Handbook (chapitres facteurs de charge &amp; aérodynamique) + CS-23 Subpart C (23.303, 335, 337, 341) + survol AMC 20-29 (approche building-block).</div></aside>
+    <aside style="display:grid;grid-template-columns:26pt 1fr;font-size:10.5pt;line-height:1.5"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:16pt;color:#C8412A;line-height:1">6</span><div><strong>Préparer le journal de bord</strong> (template §10.2) et <strong>repasser l'auto-test §2.2</strong> pour noter ton score de départ.</div></aside>
+  </div>
+
+  <aside style="background:#12283C;color:#F4EFE3;padding:20pt 22pt">
+    <div style="display:flex;align-items:center;gap:9pt;font-size:8.5pt;letter-spacing:.16em;text-transform:uppercase;color:#F0A88E;margin-bottom:9pt"><span style="display:block;width:22pt;height:2px;background:#C8412A"></span><span>Dernier mot</span></div>
+    <p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:14.5pt;line-height:1.45;color:#FFFDF7">Tu as déjà les vraies compétences dures (FEA, Python, optimisation). Ce projet ne t'apprend pas à calculer — il t'apprend à <strong style="color:#F0A88E;font-weight:400">penser aéro, à justifier, et à parler le langage des BE de Toulouse</strong>. Tiens les plafonds d'heures, sors un livrable chaque soir, sois impitoyablement honnête sur tes écarts : à J14, tu auras un dossier que peu de candidats juniors peuvent montrer. Bon vol.</p>
+  </aside>
+</section>
+
+<div id="end"></div>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;paper&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;a4&quot;,&quot;letter&quot;],&quot;default&quot;:&quot;a4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Impression&quot;},&quot;showAnswers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenu&quot;},&quot;showSources&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenu&quot;}}">class Component extends DCLogic {
+  renderVals() {
+    return {
+      paper: this.props.paper ?? 'a4',
+      showAnswers: this.props.showAnswers ?? true,
+      showSources: this.props.showSources ?? true,
+    };
+  }
+}</script>
+</body>
+</html>

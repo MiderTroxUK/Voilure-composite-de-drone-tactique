@@ -1,0 +1,105 @@
+{
+  "outputStyle": "Tuteur-aero",
+  "permissions": {
+    "defaultMode": "default",
+    "disableBypassPermissionsMode": "disable",
+    "allow": [
+      "Edit(/.tutor/TUTOR_NOTES.md)",
+      "Bash(git status *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "PowerShell(git status *)",
+      "PowerShell(git log *)",
+      "PowerShell(git diff *)"
+    ],
+    "ask": [
+      "Bash(python *)",
+      "Bash(py *)",
+      "PowerShell(python *)",
+      "PowerShell(py *)"
+    ],
+    "deny": [
+      "Edit(/00_specification/**)",
+      "Edit(/01_loads_vn/**)",
+      "Edit(/02_composites_clt/**)",
+      "Edit(/03_fem_ansys/**)",
+      "Edit(/04_dynamics/**)",
+      "Edit(/05_test/**)",
+      "Edit(/06_mbse_capella/**)",
+      "Edit(/07_report/**)",
+      "Edit(/tools/**)",
+      "Edit(/docs/**)",
+      "Edit(/.claude/**)",
+      "Edit(/.tutor/config.json)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/JOURNAL.md)",
+      "Edit(/README.md)",
+      "Edit(/.gitignore)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git checkout *)",
+      "Bash(git restore *)",
+      "Bash(git reset *)",
+      "Bash(git stash *)",
+      "Bash(rm *)",
+      "Bash(mv *)",
+      "Bash(cp *)",
+      "Bash(tee *)",
+      "PowerShell(git add *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git push *)",
+      "PowerShell(git checkout *)",
+      "PowerShell(git restore *)",
+      "PowerShell(git reset *)",
+      "PowerShell(git stash *)",
+      "PowerShell(Set-Content *)",
+      "PowerShell(Add-Content *)",
+      "PowerShell(Out-File *)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(Move-Item *)",
+      "PowerShell(Rename-Item *)",
+      "PowerShell(Remove-Item *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${CLAUDE_PROJECT_DIR}/.claude/hooks/garde-ecriture.ps1"],
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${CLAUDE_PROJECT_DIR}/.claude/hooks/session-start.ps1"],
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${CLAUDE_PROJECT_DIR}/.claude/hooks/heure.ps1"],
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

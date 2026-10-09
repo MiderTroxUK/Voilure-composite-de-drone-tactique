@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Ansys : on versionne les archives .wbpz et les exports CSV, pas les résultats bruts
+*_files/
+*.rst
+*.rth
+*.db
+*.dbb
+*.full
+*.esav
+*.emat
+*.mntr
+*.lock
+
+# SolidWorks / CATIA : fichiers temporaires
+~$*
+*.SLDBAK
+
+# Arduino / PlatformIO
+.pio/
+build/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Claude Code : réglages personnels
+.claude/settings.local.json
