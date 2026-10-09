@@ -33,3 +33,9 @@ build/
 
 # Claude Code : réglages personnels
 .claude/settings.local.json
+
+# Aide du projet : fichiers générés IA
+.claude
+.tutor
+**/*.md
+*.md
